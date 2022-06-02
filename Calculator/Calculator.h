@@ -83,6 +83,7 @@ namespace Calculator {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Calculator::typeid));
 			this->buttonAbs = (gcnew System::Windows::Forms::Button());
 			this->buttonBackspace = (gcnew System::Windows::Forms::Button());
 			this->buttonClear = (gcnew System::Windows::Forms::Button());
@@ -126,7 +127,7 @@ namespace Calculator {
 			this->buttonAbs->Font = (gcnew System::Drawing::Font(L"Segoe UI", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonAbs->ForeColor = System::Drawing::Color::White;
-			this->buttonAbs->Location = System::Drawing::Point(136, 233);
+			this->buttonAbs->Location = System::Drawing::Point(136, 140);
 			this->buttonAbs->Name = L"buttonAbs";
 			this->buttonAbs->Size = System::Drawing::Size(118, 60);
 			this->buttonAbs->TabIndex = 11;
@@ -142,7 +143,7 @@ namespace Calculator {
 			this->buttonBackspace->Font = (gcnew System::Drawing::Font(L"Segoe UI", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonBackspace->ForeColor = System::Drawing::Color::White;
-			this->buttonBackspace->Location = System::Drawing::Point(632, 167);
+			this->buttonBackspace->Location = System::Drawing::Point(632, 74);
 			this->buttonBackspace->Name = L"buttonBackspace";
 			this->buttonBackspace->Size = System::Drawing::Size(118, 60);
 			this->buttonBackspace->TabIndex = 9;
@@ -159,7 +160,7 @@ namespace Calculator {
 			this->buttonClear->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonClear->ForeColor = System::Drawing::Color::White;
-			this->buttonClear->Location = System::Drawing::Point(508, 167);
+			this->buttonClear->Location = System::Drawing::Point(508, 74);
 			this->buttonClear->Name = L"buttonClear";
 			this->buttonClear->Size = System::Drawing::Size(118, 60);
 			this->buttonClear->TabIndex = 8;
@@ -176,7 +177,7 @@ namespace Calculator {
 			this->buttonE->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonE->ForeColor = System::Drawing::Color::White;
-			this->buttonE->Location = System::Drawing::Point(136, 167);
+			this->buttonE->Location = System::Drawing::Point(136, 74);
 			this->buttonE->Name = L"buttonE";
 			this->buttonE->Size = System::Drawing::Size(118, 60);
 			this->buttonE->TabIndex = 5;
@@ -194,7 +195,7 @@ namespace Calculator {
 			this->buttonPi->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonPi->ForeColor = System::Drawing::Color::White;
-			this->buttonPi->Location = System::Drawing::Point(12, 167);
+			this->buttonPi->Location = System::Drawing::Point(12, 74);
 			this->buttonPi->Name = L"buttonPi";
 			this->buttonPi->Size = System::Drawing::Size(118, 60);
 			this->buttonPi->TabIndex = 4;
@@ -211,7 +212,7 @@ namespace Calculator {
 			this->buttonLn->Font = (gcnew System::Drawing::Font(L"Segoe UI", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonLn->ForeColor = System::Drawing::Color::White;
-			this->buttonLn->Location = System::Drawing::Point(12, 233);
+			this->buttonLn->Location = System::Drawing::Point(12, 140);
 			this->buttonLn->Name = L"buttonLn";
 			this->buttonLn->Size = System::Drawing::Size(118, 60);
 			this->buttonLn->TabIndex = 10;
@@ -228,7 +229,7 @@ namespace Calculator {
 			this->buttonSqrt->Font = (gcnew System::Drawing::Font(L"Segoe UI", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonSqrt->ForeColor = System::Drawing::Color::White;
-			this->buttonSqrt->Location = System::Drawing::Point(136, 300);
+			this->buttonSqrt->Location = System::Drawing::Point(136, 207);
 			this->buttonSqrt->Name = L"buttonSqrt";
 			this->buttonSqrt->Size = System::Drawing::Size(118, 60);
 			this->buttonSqrt->TabIndex = 17;
@@ -245,7 +246,7 @@ namespace Calculator {
 			this->buttonPower->Font = (gcnew System::Drawing::Font(L"Segoe UI", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonPower->ForeColor = System::Drawing::Color::White;
-			this->buttonPower->Location = System::Drawing::Point(12, 299);
+			this->buttonPower->Location = System::Drawing::Point(12, 206);
 			this->buttonPower->Name = L"buttonPower";
 			this->buttonPower->Size = System::Drawing::Size(118, 60);
 			this->buttonPower->TabIndex = 16;
@@ -262,7 +263,7 @@ namespace Calculator {
 			this->buttonCtg->Font = (gcnew System::Drawing::Font(L"Segoe UI", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonCtg->ForeColor = System::Drawing::Color::White;
-			this->buttonCtg->Location = System::Drawing::Point(136, 431);
+			this->buttonCtg->Location = System::Drawing::Point(136, 338);
 			this->buttonCtg->Name = L"buttonCtg";
 			this->buttonCtg->Size = System::Drawing::Size(118, 60);
 			this->buttonCtg->TabIndex = 29;
@@ -279,7 +280,7 @@ namespace Calculator {
 			this->buttonTg->Font = (gcnew System::Drawing::Font(L"Segoe UI", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonTg->ForeColor = System::Drawing::Color::White;
-			this->buttonTg->Location = System::Drawing::Point(12, 431);
+			this->buttonTg->Location = System::Drawing::Point(12, 338);
 			this->buttonTg->Name = L"buttonTg";
 			this->buttonTg->Size = System::Drawing::Size(118, 60);
 			this->buttonTg->TabIndex = 28;
@@ -296,7 +297,7 @@ namespace Calculator {
 			this->buttonCos->Font = (gcnew System::Drawing::Font(L"Segoe UI", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonCos->ForeColor = System::Drawing::Color::White;
-			this->buttonCos->Location = System::Drawing::Point(136, 369);
+			this->buttonCos->Location = System::Drawing::Point(136, 276);
 			this->buttonCos->Name = L"buttonCos";
 			this->buttonCos->Size = System::Drawing::Size(118, 60);
 			this->buttonCos->TabIndex = 23;
@@ -313,7 +314,7 @@ namespace Calculator {
 			this->buttonSin->Font = (gcnew System::Drawing::Font(L"Segoe UI", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonSin->ForeColor = System::Drawing::Color::White;
-			this->buttonSin->Location = System::Drawing::Point(12, 365);
+			this->buttonSin->Location = System::Drawing::Point(12, 272);
 			this->buttonSin->Name = L"buttonSin";
 			this->buttonSin->Size = System::Drawing::Size(118, 60);
 			this->buttonSin->TabIndex = 22;
@@ -330,7 +331,7 @@ namespace Calculator {
 			this->buttonEquals1->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonEquals1->ForeColor = System::Drawing::Color::White;
-			this->buttonEquals1->Location = System::Drawing::Point(508, 431);
+			this->buttonEquals1->Location = System::Drawing::Point(508, 338);
 			this->buttonEquals1->Name = L"buttonEquals1";
 			this->buttonEquals1->Size = System::Drawing::Size(118, 60);
 			this->buttonEquals1->TabIndex = 32;
@@ -347,7 +348,7 @@ namespace Calculator {
 			this->buttonPlus->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonPlus->ForeColor = System::Drawing::Color::White;
-			this->buttonPlus->Location = System::Drawing::Point(632, 233);
+			this->buttonPlus->Location = System::Drawing::Point(632, 140);
 			this->buttonPlus->Name = L"buttonPlus";
 			this->buttonPlus->Size = System::Drawing::Size(118, 60);
 			this->buttonPlus->TabIndex = 15;
@@ -364,7 +365,7 @@ namespace Calculator {
 			this->buttonDivision->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonDivision->ForeColor = System::Drawing::Color::White;
-			this->buttonDivision->Location = System::Drawing::Point(632, 431);
+			this->buttonDivision->Location = System::Drawing::Point(632, 338);
 			this->buttonDivision->Name = L"buttonDivision";
 			this->buttonDivision->Size = System::Drawing::Size(118, 60);
 			this->buttonDivision->TabIndex = 33;
@@ -381,7 +382,7 @@ namespace Calculator {
 			this->buttonMultiply->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonMultiply->ForeColor = System::Drawing::Color::White;
-			this->buttonMultiply->Location = System::Drawing::Point(632, 364);
+			this->buttonMultiply->Location = System::Drawing::Point(632, 271);
 			this->buttonMultiply->Name = L"buttonMultiply";
 			this->buttonMultiply->Size = System::Drawing::Size(118, 60);
 			this->buttonMultiply->TabIndex = 27;
@@ -398,7 +399,7 @@ namespace Calculator {
 			this->buttonMinus->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonMinus->ForeColor = System::Drawing::Color::White;
-			this->buttonMinus->Location = System::Drawing::Point(632, 299);
+			this->buttonMinus->Location = System::Drawing::Point(632, 206);
 			this->buttonMinus->Name = L"buttonMinus";
 			this->buttonMinus->Size = System::Drawing::Size(118, 60);
 			this->buttonMinus->TabIndex = 21;
@@ -415,7 +416,7 @@ namespace Calculator {
 			this->buttonPoint->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonPoint->ForeColor = System::Drawing::Color::White;
-			this->buttonPoint->Location = System::Drawing::Point(260, 431);
+			this->buttonPoint->Location = System::Drawing::Point(260, 338);
 			this->buttonPoint->Name = L"buttonPoint";
 			this->buttonPoint->Size = System::Drawing::Size(118, 60);
 			this->buttonPoint->TabIndex = 30;
@@ -430,12 +431,12 @@ namespace Calculator {
 			this->buttonEquals2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
 				static_cast<System::Int32>(static_cast<System::Byte>(64)));
 			this->buttonEquals2->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->buttonEquals2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->buttonEquals2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonEquals2->ForeColor = System::Drawing::Color::White;
-			this->buttonEquals2->Location = System::Drawing::Point(260, 61);
+			this->buttonEquals2->Location = System::Drawing::Point(508, 12);
 			this->buttonEquals2->Name = L"buttonEquals2";
-			this->buttonEquals2->Size = System::Drawing::Size(242, 51);
+			this->buttonEquals2->Size = System::Drawing::Size(83, 43);
 			this->buttonEquals2->TabIndex = 2;
 			this->buttonEquals2->TabStop = false;
 			this->buttonEquals2->Text = L"=";
@@ -450,7 +451,7 @@ namespace Calculator {
 			this->button0->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button0->ForeColor = System::Drawing::Color::White;
-			this->button0->Location = System::Drawing::Point(384, 431);
+			this->button0->Location = System::Drawing::Point(384, 338);
 			this->button0->Name = L"button0";
 			this->button0->Size = System::Drawing::Size(118, 60);
 			this->button0->TabIndex = 31;
@@ -467,7 +468,7 @@ namespace Calculator {
 			this->button9->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button9->ForeColor = System::Drawing::Color::White;
-			this->button9->Location = System::Drawing::Point(508, 233);
+			this->button9->Location = System::Drawing::Point(508, 140);
 			this->button9->Name = L"button9";
 			this->button9->Size = System::Drawing::Size(118, 60);
 			this->button9->TabIndex = 14;
@@ -484,7 +485,7 @@ namespace Calculator {
 			this->button8->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button8->ForeColor = System::Drawing::Color::White;
-			this->button8->Location = System::Drawing::Point(384, 233);
+			this->button8->Location = System::Drawing::Point(384, 140);
 			this->button8->Name = L"button8";
 			this->button8->Size = System::Drawing::Size(118, 60);
 			this->button8->TabIndex = 13;
@@ -501,7 +502,7 @@ namespace Calculator {
 			this->button7->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button7->ForeColor = System::Drawing::Color::White;
-			this->button7->Location = System::Drawing::Point(260, 233);
+			this->button7->Location = System::Drawing::Point(260, 140);
 			this->button7->Name = L"button7";
 			this->button7->Size = System::Drawing::Size(118, 60);
 			this->button7->TabIndex = 12;
@@ -518,7 +519,7 @@ namespace Calculator {
 			this->button6->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button6->ForeColor = System::Drawing::Color::White;
-			this->button6->Location = System::Drawing::Point(508, 299);
+			this->button6->Location = System::Drawing::Point(508, 206);
 			this->button6->Name = L"button6";
 			this->button6->Size = System::Drawing::Size(118, 60);
 			this->button6->TabIndex = 20;
@@ -535,7 +536,7 @@ namespace Calculator {
 			this->button5->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button5->ForeColor = System::Drawing::Color::White;
-			this->button5->Location = System::Drawing::Point(384, 299);
+			this->button5->Location = System::Drawing::Point(384, 206);
 			this->button5->Name = L"button5";
 			this->button5->Size = System::Drawing::Size(118, 60);
 			this->button5->TabIndex = 19;
@@ -552,7 +553,7 @@ namespace Calculator {
 			this->button4->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button4->ForeColor = System::Drawing::Color::White;
-			this->button4->Location = System::Drawing::Point(260, 299);
+			this->button4->Location = System::Drawing::Point(260, 206);
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(118, 60);
 			this->button4->TabIndex = 18;
@@ -569,7 +570,7 @@ namespace Calculator {
 			this->button3->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button3->ForeColor = System::Drawing::Color::White;
-			this->button3->Location = System::Drawing::Point(508, 365);
+			this->button3->Location = System::Drawing::Point(508, 272);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(118, 60);
 			this->button3->TabIndex = 26;
@@ -586,7 +587,7 @@ namespace Calculator {
 			this->button2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button2->ForeColor = System::Drawing::Color::White;
-			this->button2->Location = System::Drawing::Point(384, 365);
+			this->button2->Location = System::Drawing::Point(384, 272);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(118, 60);
 			this->button2->TabIndex = 25;
@@ -603,7 +604,7 @@ namespace Calculator {
 			this->button1->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button1->ForeColor = System::Drawing::Color::White;
-			this->button1->Location = System::Drawing::Point(260, 364);
+			this->button1->Location = System::Drawing::Point(260, 271);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(118, 60);
 			this->button1->TabIndex = 24;
@@ -616,12 +617,13 @@ namespace Calculator {
 			// 
 			this->Answer->Anchor = System::Windows::Forms::AnchorStyles::None;
 			this->Answer->BackColor = System::Drawing::Color::WhiteSmoke;
+			this->Answer->Cursor = System::Windows::Forms::Cursors::Default;
 			this->Answer->Font = (gcnew System::Drawing::Font(L"Segoe UI", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->Answer->Location = System::Drawing::Point(260, 118);
+			this->Answer->Location = System::Drawing::Point(597, 12);
 			this->Answer->Name = L"Answer";
 			this->Answer->ReadOnly = true;
-			this->Answer->Size = System::Drawing::Size(242, 43);
+			this->Answer->Size = System::Drawing::Size(153, 43);
 			this->Answer->TabIndex = 3;
 			this->Answer->TabStop = false;
 			this->Answer->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
@@ -632,10 +634,10 @@ namespace Calculator {
 			this->Expression->BackColor = System::Drawing::Color::WhiteSmoke;
 			this->Expression->Font = (gcnew System::Drawing::Font(L"Segoe UI", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->Expression->Location = System::Drawing::Point(13, 12);
+			this->Expression->Location = System::Drawing::Point(12, 12);
 			this->Expression->Name = L"Expression";
 			this->Expression->RightToLeft = System::Windows::Forms::RightToLeft::No;
-			this->Expression->Size = System::Drawing::Size(737, 43);
+			this->Expression->Size = System::Drawing::Size(490, 43);
 			this->Expression->TabIndex = 1;
 			this->Expression->TabStop = false;
 			this->Expression->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
@@ -648,7 +650,7 @@ namespace Calculator {
 			this->buttonLeftBracket->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonLeftBracket->ForeColor = System::Drawing::Color::White;
-			this->buttonLeftBracket->Location = System::Drawing::Point(260, 167);
+			this->buttonLeftBracket->Location = System::Drawing::Point(260, 74);
 			this->buttonLeftBracket->Name = L"buttonLeftBracket";
 			this->buttonLeftBracket->Size = System::Drawing::Size(118, 60);
 			this->buttonLeftBracket->TabIndex = 6;
@@ -665,7 +667,7 @@ namespace Calculator {
 			this->buttonRightBracket->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonRightBracket->ForeColor = System::Drawing::Color::White;
-			this->buttonRightBracket->Location = System::Drawing::Point(384, 167);
+			this->buttonRightBracket->Location = System::Drawing::Point(384, 74);
 			this->buttonRightBracket->Name = L"buttonRightBracket";
 			this->buttonRightBracket->Size = System::Drawing::Size(118, 60);
 			this->buttonRightBracket->TabIndex = 7;
@@ -680,7 +682,8 @@ namespace Calculator {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->BackColor = System::Drawing::Color::Silver;
-			this->ClientSize = System::Drawing::Size(761, 500);
+			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->ClientSize = System::Drawing::Size(761, 408);
 			this->Controls->Add(this->buttonRightBracket);
 			this->Controls->Add(this->buttonLeftBracket);
 			this->Controls->Add(this->buttonAbs);
@@ -714,10 +717,14 @@ namespace Calculator {
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->Answer);
 			this->Controls->Add(this->Expression);
-			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedToolWindow;
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->KeyPreview = true;
+			this->MaximumSize = System::Drawing::Size(779, 455);
+			this->MinimumSize = System::Drawing::Size(779, 455);
 			this->Name = L"Calculator";
-			this->Text = L"Calculator";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
+			this->Text = L"Scientific Calculator";
 			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &Calculator::Calculator_KeyDown);
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -967,10 +974,10 @@ namespace Calculator {
 		case Keys::Escape:
 			buttonClear->PerformClick();
 			break;
-		/*default:
+		default:
 			Answer->Text = L"";
-			break;*/
+			break;
 		}
 	}
-	};
+};
 }
