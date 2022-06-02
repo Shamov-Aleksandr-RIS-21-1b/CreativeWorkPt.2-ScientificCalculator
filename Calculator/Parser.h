@@ -257,6 +257,7 @@ void nlog(std::stack<double>& numbers, std::stack<Lexeme>& operations)
 {
 	double operand = numbers.top();
 	numbers.pop();
+	if (operand <= 0) throw UnexpectedSymbolError();
 	numbers.push(log(operand));
 	operations.pop();
 }
