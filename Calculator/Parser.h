@@ -8,28 +8,29 @@ class UnexpectedSymbolError
 {
 private:
 	std::string message;
-	int code;
+	int index;
 public:
-	UnexpectedSymbolError()
+	UnexpectedSymbolError(const std::string& message, const int& index = -1)
 	{
-		code = 1;
-		message = "Error: unexpected symbol. Error code: " + std::to_string(code) + ".";
+		this->message = message;
+		this->index = index;
+		if (index != -1)
+		{
+			this->message += "\nИндекс символа: " + std::to_string(index);
+		}
 	}
-	UnexpectedSymbolError(const int& index)
+	std::string get_message()
 	{
-		code = 1;
-		message = "Error: unexpected symbol at index " + std::to_string(index) + ". Error code: " + std::to_string(code) + ".";
+		return message;
 	}
-	void print_error()
+	int get_index()
 	{
-		std::cout << message;
+		return index;
 	}
 };
 
 #define PI 3.141593
 #define ex exp(1)
-
-typedef unsigned int uint;
 
 enum LexemeType
 {
@@ -98,7 +99,7 @@ std::vector<Lexeme> parse_to_lexems(const std::string& expression)
 						number += expression[i];
 						point = true;
 					}
-					else throw UnexpectedSymbolError();
+					else throw UnexpectedSymbolError("Более одного разделителя в числе.", i);
 				}
 				else number += expression[i];
 				
@@ -107,12 +108,12 @@ std::vector<Lexeme> parse_to_lexems(const std::string& expression)
 				if (Continue) Continue = expression[i] >= '0' && expression[i] <= '9' || expression[i] == '.';
 			} while (Continue);
 
-			if (number[number.size() - 1] == '.') throw UnexpectedSymbolError();
+			if (number[number.size() - 1] == '.') throw UnexpectedSymbolError("Число не может оканчиваться разделителем.", i);
 			else if (number[0] == '0')
 			{
 				if (number.size() >= 2)
 				{
-					if (number[1] != '.') throw UnexpectedSymbolError();
+					if (number[1] != '.') throw UnexpectedSymbolError("Число не может начинаться с 0.", i);
 					else Lexemes.push_back(Lexeme(Number, number));
 				}
 				else Lexemes.push_back(Lexeme(Number, number));
@@ -132,8 +133,8 @@ std::vector<Lexeme> parse_to_lexems(const std::string& expression)
 			else if (expression.substr(i, 2) == "pi") { Lexemes.push_back(Lexeme(Number, std::to_string(PI))); i += 2; }
 			else if (expression[i] == 'e') { Lexemes.push_back(Lexeme(Number, std::to_string(ex))); ++i; }
 			else if (expression[i] == ' ') ++i;
-			else if (expression[i] == '.') throw UnexpectedSymbolError();
-			else throw UnexpectedSymbolError();
+			else if (expression[i] == '.') throw UnexpectedSymbolError("Разделитель вне числа.", i);
+			else throw UnexpectedSymbolError("Недопустимый символ.", i);
 		}
 
 		else if (i + 2 < expression.size())
@@ -147,8 +148,8 @@ std::vector<Lexeme> parse_to_lexems(const std::string& expression)
 			else if (expression.substr(i, 2) == "pi") { Lexemes.push_back(Lexeme(Number, std::to_string(PI))); i += 2; }
 			else if (expression[i] == 'e') { Lexemes.push_back(Lexeme(Number, std::to_string(ex))); ++i; }
 			else if (expression[i] == ' ') ++i;
-			else if (expression[i] == '.') throw UnexpectedSymbolError();
-			else throw UnexpectedSymbolError();
+			else if (expression[i] == '.') throw UnexpectedSymbolError("Разделитель вне числа.", i);
+			else throw UnexpectedSymbolError("Недопустимый символ.", i);
 		}
 	
 		else if (i + 1 < expression.size())
@@ -158,23 +159,24 @@ std::vector<Lexeme> parse_to_lexems(const std::string& expression)
 			else if (expression.substr(i, 2) == "pi") { Lexemes.push_back(Lexeme(Number, std::to_string(PI))); i += 2; }
 			else if (expression[i] == 'e') { Lexemes.push_back(Lexeme(Number, std::to_string(ex))); ++i; }
 			else if (expression[i] == ' ') ++i;
-			else if (expression[i] == '.') throw UnexpectedSymbolError();
-			else throw UnexpectedSymbolError();
+			else if (expression[i] == '.') throw UnexpectedSymbolError("Разделитель вне числа.", i);
+			else throw UnexpectedSymbolError("Недопустимый символ.", i);
 		}
 
 		else if (expression[i] == 'e') { Lexemes.push_back(Lexeme(Number, std::to_string(ex))); ++i; }
 		else if (expression[i] == ' ') ++i;
-		else if (expression[i] == '.') throw UnexpectedSymbolError();
-		else throw UnexpectedSymbolError();
+		else if (expression[i] == '.') throw UnexpectedSymbolError("Разделитель вне числа.", i);
+		else throw UnexpectedSymbolError("Недопустимый символ.", i);
 	}
 
-	if (BracketCount != 0) throw UnexpectedSymbolError();
+	if (BracketCount < 0) throw UnexpectedSymbolError("Ожидалась открывающая скобка.");
+	else if (BracketCount > 0) throw UnexpectedSymbolError("Ожидалась закрывающая скобка.");
 	else
 	{
 		if (Lexemes.size() > 0)
 		{
 			if (Lexemes[0].type == Plus || Lexemes[0].type == Multiply || Lexemes[0].type == Division || Lexemes[0].type == RightBracket || Lexemes[Lexemes.size() - 1].type == Plus || Lexemes[Lexemes.size() - 1].type == Minus || Lexemes[Lexemes.size() - 1].type == Multiply || Lexemes[Lexemes.size() - 1].type == Division || Lexemes[Lexemes.size() - 1].type == Abs || Lexemes[Lexemes.size() - 1].type == Power || Lexemes[Lexemes.size() - 1].type == Sinus || Lexemes[Lexemes.size() - 1].type == Cosin || Lexemes[Lexemes.size() - 1].type == Tang || Lexemes[Lexemes.size() - 1].type == Ctan || Lexemes[Lexemes.size() - 1].type == Ln || Lexemes[Lexemes.size() - 1].type == LeftBracket)
-				throw UnexpectedSymbolError();
+				throw UnexpectedSymbolError("Недопустимое использование операции или скобки.", -1);
 			for (int i = 1; i < Lexemes.size(); i++)
 			{
 				switch (Lexemes[i].type)
@@ -185,13 +187,13 @@ std::vector<Lexeme> parse_to_lexems(const std::string& expression)
 				case Power:
 				{
 					if (Lexemes[i - 1].type == LeftBracket || Lexemes[i - 1].type == Plus || Lexemes[i - 1].type == Minus || Lexemes[i - 1].type == Multiply || Lexemes[i - 1].type == Division || Lexemes[i - 1].type == Power)
-						throw UnexpectedSymbolError();
+						throw UnexpectedSymbolError("Недопустимое использование операции или скобки.");
 					break;
 				}
 				case Minus:
 				{
 					if (Lexemes[i - 1].type == Plus || Lexemes[i - 1].type == Minus || Lexemes[i - 1].type == Multiply || Lexemes[i - 1].type == Division || Lexemes[i - 1].type == Power)
-						throw UnexpectedSymbolError();
+						throw UnexpectedSymbolError("Недопустимое использование операции.");
 					break;
 				}
 				case LeftBracket:
@@ -214,7 +216,7 @@ std::vector<Lexeme> parse_to_lexems(const std::string& expression)
 						}
 					}
 					else if (Lexemes[i - 1].value == std::to_string(PI) || Lexemes[i - 1].value == std::to_string(ex) || Lexemes[i - 1].type == RightBracket)
-						throw UnexpectedSymbolError();
+						throw UnexpectedSymbolError("Ожидалась операция.");
 					break;
 				}
 				case Abs:
@@ -235,7 +237,7 @@ std::vector<Lexeme> parse_to_lexems(const std::string& expression)
 				case RightBracket:
 				{
 					if (Lexemes[i - 1].type == LeftBracket || Lexemes[i - 1].type == Plus || Lexemes[i - 1].type == Minus || Lexemes[i - 1].type == Multiply || Lexemes[i - 1].type == Division || Lexemes[i - 1].type == Power)
-						throw UnexpectedSymbolError();
+						throw UnexpectedSymbolError("Недопустимое использование операции.");
 					break;
 				}
 				}
@@ -257,7 +259,7 @@ void nlog(std::stack<double>& numbers, std::stack<Lexeme>& operations)
 {
 	double operand = numbers.top();
 	numbers.pop();
-	if (operand <= 0) throw UnexpectedSymbolError();
+	if (operand <= 0) throw UnexpectedSymbolError("Неположительное выражение под логарифмом.");
 	numbers.push(log(operand));
 	operations.pop();
 }
@@ -300,9 +302,9 @@ void tangens(std::stack<double>& numbers, std::stack<Lexeme>& operations)
 	double operand = numbers.top();
 	numbers.pop();
 	if (operand == 3 * PI / 2)//костыль
-		throw UnexpectedSymbolError();
+		throw UnexpectedSymbolError("Тангенс не существует.");
 	else if (round((operand - PI / 2) / PI) == (operand - PI / 2) / PI)
-		throw UnexpectedSymbolError();
+		throw UnexpectedSymbolError("Тангенс не существует.");
 	else
 		numbers.push(tan(operand));
 	operations.pop();
@@ -313,7 +315,7 @@ void cotangens(std::stack<double>& numbers, std::stack<Lexeme>& operations)
 	double operand = numbers.top();
 	numbers.pop();
 	if (round(operand / PI) == operand / PI)
-		throw UnexpectedSymbolError();
+		throw UnexpectedSymbolError("Котангенс не существует.");
 	else
 		numbers.push(cos(operand) / sin(operand));
 	operations.pop();
@@ -343,7 +345,7 @@ void division(std::stack<double>& numbers, std::stack<Lexeme>& operations)
 {
 	double operandR = numbers.top();
 	numbers.pop();
-	if (operandR == 0) throw UnexpectedSymbolError();
+	if (operandR == 0) throw UnexpectedSymbolError("Невозможно поделить на 0.");
 	double operandL = numbers.top();
 	numbers.pop();
 	numbers.push(operandL / operandR);
@@ -388,7 +390,7 @@ void odinary_minuss(std::stack<double>& numbers, std::stack<Lexeme>& operations)
 /// <param name="expression"></param>
 /// <returns></returns>
 
-double foo(const std::string& expression)
+double count(const std::string& expression)
 //алгоритм вычислений через два стека - с числами и операциями, 
 //которые наполняются и обрабатывваются по мере чтения лексем(токенов)
 {
@@ -846,5 +848,5 @@ double foo(const std::string& expression)
 	{
 		return numbers.top();
 	}
-	else throw UnexpectedSymbolError();
+	else throw UnexpectedSymbolError("Нет чисел для обработки.");
 }

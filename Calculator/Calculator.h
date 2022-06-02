@@ -935,11 +935,12 @@ namespace Calculator {
 
 		try
 		{
-			Answer->Text = gcnew String(std::to_string(foo(expression)).c_str());
+			Answer->Text = gcnew String(std::to_string(count(expression)).c_str());
 		}
-		catch (UnexpectedSymbolError E)
+		catch (UnexpectedSymbolError& E)
 		{
 			Answer->Text = L"ОШИБКА";
+			MessageBox::Show(gcnew String(E.get_message().c_str()), "", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 
 		this->ActiveControl = nullptr;
@@ -955,11 +956,12 @@ namespace Calculator {
 
 		try
 		{
-			Answer->Text = gcnew String(std::to_string(foo(expression)).c_str());
+			Answer->Text = gcnew String(std::to_string(count(expression)).c_str());
 		}
-		catch (UnexpectedSymbolError E)
+		catch (UnexpectedSymbolError& E)
 		{
 			Answer->Text = L"ОШИБКА";
+			MessageBox::Show(gcnew String(E.get_message().c_str()), "", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 
 		this->ActiveControl = nullptr;
