@@ -287,8 +287,7 @@ void cosinus(std::stack<double>& numbers, std::stack<Lexeme>& operations)
 {
 	double operand = numbers.top();
 	numbers.pop();
-	std::cout << round((operand - PI / 2) / PI) << "   " << (operand - PI / 2) / PI << std::endl;
-	if (operand == 3 * PI / 2)//костыль
+	if (operand == 3 * PI / 2)
 		numbers.push(0);
 	else if (round((operand - PI / 2) / PI) == (operand - PI / 2) / PI)
 		numbers.push(0);
@@ -301,7 +300,7 @@ void tangens(std::stack<double>& numbers, std::stack<Lexeme>& operations)
 {
 	double operand = numbers.top();
 	numbers.pop();
-	if (operand == 3 * PI / 2)//костыль
+	if (operand == 3 * PI / 2)
 		throw UnexpectedSymbolError("Тангенс не существует.");
 	else if (round((operand - PI / 2) / PI) == (operand - PI / 2) / PI)
 		throw UnexpectedSymbolError("Тангенс не существует.");
@@ -372,7 +371,7 @@ void binary_minuss(std::stack<double>& numbers, std::stack<Lexeme>& operations)
 	operations.pop();
 }
 
-void odinary_minuss(std::stack<double>& numbers, std::stack<Lexeme>& operations)
+void unary_minuss(std::stack<double>& numbers, std::stack<Lexeme>& operations)
 {
 	double operand = numbers.top();
 	numbers.pop();
@@ -428,7 +427,7 @@ double count(const std::string& expression)
 					{
 					case UnaryMinus:
 					{
-						odinary_minuss(numbers, operations);
+						unary_minuss(numbers, operations);
 						break;
 					}
 					case Abs:
@@ -516,7 +515,7 @@ double count(const std::string& expression)
 				{
 				case UnaryMinus:
 				{
-					odinary_minuss(numbers, operations);
+					unary_minuss(numbers, operations);
 					break;
 				}
 				case Abs:
@@ -594,7 +593,7 @@ double count(const std::string& expression)
 				{
 				case UnaryMinus:
 				{
-					odinary_minuss(numbers, operations);
+					unary_minuss(numbers, operations);
 					break;
 				}
 				case Abs:
@@ -663,10 +662,6 @@ double count(const std::string& expression)
 				switch (operations.top().type)
 				{
 				case UnaryMinus:
-				{
-					odinary_minuss(numbers, operations);
-					break;
-				}
 				case Abs:
 				case Ln:
 				case Sqrt:
@@ -702,7 +697,7 @@ double count(const std::string& expression)
 				{
 				case UnaryMinus:
 				{
-					odinary_minuss(numbers, operations);
+					unary_minuss(numbers, operations);
 					break;
 				}
 				case Abs:
@@ -778,7 +773,7 @@ double count(const std::string& expression)
 		{
 		case UnaryMinus:
 		{
-			odinary_minuss(numbers, operations);
+			unary_minuss(numbers, operations);
 			break;
 		}
 		case Abs:

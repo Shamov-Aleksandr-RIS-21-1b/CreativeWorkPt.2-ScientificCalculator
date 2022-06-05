@@ -297,7 +297,7 @@ namespace Calculator {
 			this->buttonCos->Font = (gcnew System::Drawing::Font(L"Segoe UI", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonCos->ForeColor = System::Drawing::Color::White;
-			this->buttonCos->Location = System::Drawing::Point(136, 276);
+			this->buttonCos->Location = System::Drawing::Point(136, 271);
 			this->buttonCos->Name = L"buttonCos";
 			this->buttonCos->Size = System::Drawing::Size(118, 60);
 			this->buttonCos->TabIndex = 23;
@@ -975,9 +975,6 @@ namespace Calculator {
 			break;
 		case Keys::Escape:
 			buttonClear->PerformClick();
-			break;
-		default:
-			Answer->Text = L"";
 			break;
 		}
 	}
