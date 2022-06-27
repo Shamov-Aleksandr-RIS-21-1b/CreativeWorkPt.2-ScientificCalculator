@@ -938,10 +938,10 @@ namespace Calculator {
 		{
 			Answer->Text = gcnew String(std::to_string(count(expression)).c_str());
 		}
-		catch (UnexpectedSymbolError& E)
+		catch (UnexpectedSymbolError& Ex)
 		{
 			Answer->Text = L"ОШИБКА";
-			MessageBox::Show(gcnew String(E.get_message().c_str()), "", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			MessageBox::Show(gcnew String(Ex.get_message().c_str()), "", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 
 		this->ActiveControl = Expression;
@@ -959,10 +959,10 @@ namespace Calculator {
 		{
 			Answer->Text = gcnew String(std::to_string(count(expression)).c_str());
 		}
-		catch (UnexpectedSymbolError& E)
+		catch (UnexpectedSymbolError& Ex)
 		{
 			Answer->Text = L"ОШИБКА";
-			MessageBox::Show(gcnew String(E.get_message().c_str()), "", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			MessageBox::Show(gcnew String(Ex.get_message().c_str()), "", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 
 		this->ActiveControl = Expression;
@@ -975,9 +975,12 @@ namespace Calculator {
 			buttonEquals1->PerformClick();
 			break;
 		case Keys::Escape:
+		case Keys::C:
 			buttonClear->PerformClick();
 			break;
 		}
+
+		this->ActiveControl = Expression;
 	}
 };
 }
