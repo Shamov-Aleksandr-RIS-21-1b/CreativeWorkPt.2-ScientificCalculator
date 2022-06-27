@@ -21,6 +21,7 @@ namespace Calculator {
 			//
 			//TODO: добавьте код конструктора
 			//
+			this->ActiveControl = Expression;
 		}
 
 	protected:
@@ -733,159 +734,159 @@ namespace Calculator {
 #pragma endregion
 	private: System::Void button0_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"0";
+		Expression->SelectedText = L"0";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"1";
+		Expression->SelectedText = L"1";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"2";
+		Expression->SelectedText = L"2";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"3";
+		Expression->SelectedText = L"3";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"4";
+		Expression->SelectedText = L"4";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"5";
+		Expression->SelectedText = L"5";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"6";
+		Expression->SelectedText = L"6";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"7";
+		Expression->SelectedText = L"7";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"8";
+		Expression->SelectedText = L"8";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void button9_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"9";
+		Expression->SelectedText = L"9";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonPoint_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L".";
+		Expression->SelectedText = L".";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonPlus_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"+";
+		Expression->SelectedText = L"+";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonMinus_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"-";
+		Expression->SelectedText = L"-";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonMultiply_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"*";
+		Expression->SelectedText = L"*";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonDivision_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"/";
+		Expression->SelectedText = L"/";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonPower_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"^";
+		Expression->SelectedText = L"^";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonSqrt_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"sqrt";
+		Expression->SelectedText = L"sqrt";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonSin_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"sin";
+		Expression->SelectedText = L"sin";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonCos_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"cos";
+		Expression->SelectedText = L"cos";
 		Answer->Text = "";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonTg_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"tg";
+		Expression->SelectedText = L"tg";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonCtg_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"ctg";
+		Expression->SelectedText = L"ctg";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonLn_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"ln";
+		Expression->SelectedText = L"ln";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonAbs_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"abs";
+		Expression->SelectedText = L"abs";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonLeftBracket_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"(";
+		Expression->SelectedText = L"(";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonRightBracket_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L")";
+		Expression->SelectedText = L")";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonClear_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		Expression->Text = L"";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonBackspace_Click(System::Object^ sender, System::EventArgs^ e)
 	{
@@ -910,19 +911,19 @@ namespace Calculator {
 
 		Answer->Text = L"";
 
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonPi_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"pi";
+		Expression->SelectedText = L"pi";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonE_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"e";
+		Expression->SelectedText = L"e";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonEquals1_Click(System::Object^ sender, System::EventArgs^ e)
 	{
@@ -943,7 +944,7 @@ namespace Calculator {
 			MessageBox::Show(gcnew String(E.get_message().c_str()), "", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonEquals2_Click(System::Object^ sender, System::EventArgs^ e)
 	{
@@ -964,7 +965,7 @@ namespace Calculator {
 			MessageBox::Show(gcnew String(E.get_message().c_str()), "", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void Calculator_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e)
 	{

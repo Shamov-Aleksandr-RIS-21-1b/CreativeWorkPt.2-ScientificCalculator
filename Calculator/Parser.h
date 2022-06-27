@@ -87,6 +87,7 @@ std::vector<Lexeme> parse_to_lexems(const std::string& expression)
 		else if (expression[i] == '^') { Lexemes.push_back(Lexeme(Power, "^")); ++i; }
 		else if (expression[i] >= '0' && expression[i] <= '9')
 		{
+			int tmp_begin_index = i;
 			std::string number = "";
 			bool Continue = true;
 			bool point = false;
@@ -108,12 +109,12 @@ std::vector<Lexeme> parse_to_lexems(const std::string& expression)
 				if (Continue) Continue = expression[i] >= '0' && expression[i] <= '9' || expression[i] == '.';
 			} while (Continue);
 
-			if (number[number.size() - 1] == '.') throw UnexpectedSymbolError("Число не может оканчиваться разделителем.", i);
+			if (number[number.size() - 1] == '.') throw UnexpectedSymbolError("Число не может оканчиваться разделителем.", i - 1);
 			else if (number[0] == '0')
 			{
 				if (number.size() >= 2)
 				{
-					if (number[1] != '.') throw UnexpectedSymbolError("Число не может начинаться с 0.", i);
+					if (number[1] != '.') throw UnexpectedSymbolError("Число не может начинаться с 0.", tmp_begin_index);
 					else Lexemes.push_back(Lexeme(Number, number));
 				}
 				else Lexemes.push_back(Lexeme(Number, number));
