@@ -21,6 +21,7 @@ namespace Calculator {
 			//
 			//TODO: добавьте код конструктора
 			//
+			this->ActiveControl = Expression;
 		}
 
 	protected:
@@ -70,11 +71,16 @@ namespace Calculator {
 
 
 
+
+	private: System::ComponentModel::IContainer^ components;
+
+
+
 	private:
 		/// <summary>
 		/// Обязательная переменная конструктора.
 		/// </summary>
-		System::ComponentModel::Container^ components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -127,9 +133,10 @@ namespace Calculator {
 			this->buttonAbs->Font = (gcnew System::Drawing::Font(L"Segoe UI", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonAbs->ForeColor = System::Drawing::Color::White;
-			this->buttonAbs->Location = System::Drawing::Point(136, 140);
+			this->buttonAbs->Location = System::Drawing::Point(102, 114);
+			this->buttonAbs->Margin = System::Windows::Forms::Padding(2);
 			this->buttonAbs->Name = L"buttonAbs";
-			this->buttonAbs->Size = System::Drawing::Size(118, 60);
+			this->buttonAbs->Size = System::Drawing::Size(88, 49);
 			this->buttonAbs->TabIndex = 11;
 			this->buttonAbs->TabStop = false;
 			this->buttonAbs->Text = L"|x|";
@@ -143,9 +150,10 @@ namespace Calculator {
 			this->buttonBackspace->Font = (gcnew System::Drawing::Font(L"Segoe UI", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonBackspace->ForeColor = System::Drawing::Color::White;
-			this->buttonBackspace->Location = System::Drawing::Point(632, 74);
+			this->buttonBackspace->Location = System::Drawing::Point(474, 60);
+			this->buttonBackspace->Margin = System::Windows::Forms::Padding(2);
 			this->buttonBackspace->Name = L"buttonBackspace";
-			this->buttonBackspace->Size = System::Drawing::Size(118, 60);
+			this->buttonBackspace->Size = System::Drawing::Size(88, 49);
 			this->buttonBackspace->TabIndex = 9;
 			this->buttonBackspace->TabStop = false;
 			this->buttonBackspace->Text = L"⌫";
@@ -160,9 +168,10 @@ namespace Calculator {
 			this->buttonClear->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonClear->ForeColor = System::Drawing::Color::White;
-			this->buttonClear->Location = System::Drawing::Point(508, 74);
+			this->buttonClear->Location = System::Drawing::Point(381, 60);
+			this->buttonClear->Margin = System::Windows::Forms::Padding(2);
 			this->buttonClear->Name = L"buttonClear";
-			this->buttonClear->Size = System::Drawing::Size(118, 60);
+			this->buttonClear->Size = System::Drawing::Size(88, 49);
 			this->buttonClear->TabIndex = 8;
 			this->buttonClear->TabStop = false;
 			this->buttonClear->Text = L"C";
@@ -177,9 +186,10 @@ namespace Calculator {
 			this->buttonE->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonE->ForeColor = System::Drawing::Color::White;
-			this->buttonE->Location = System::Drawing::Point(136, 74);
+			this->buttonE->Location = System::Drawing::Point(102, 60);
+			this->buttonE->Margin = System::Windows::Forms::Padding(2);
 			this->buttonE->Name = L"buttonE";
-			this->buttonE->Size = System::Drawing::Size(118, 60);
+			this->buttonE->Size = System::Drawing::Size(88, 49);
 			this->buttonE->TabIndex = 5;
 			this->buttonE->TabStop = false;
 			this->buttonE->Text = L"e";
@@ -195,9 +205,10 @@ namespace Calculator {
 			this->buttonPi->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonPi->ForeColor = System::Drawing::Color::White;
-			this->buttonPi->Location = System::Drawing::Point(12, 74);
+			this->buttonPi->Location = System::Drawing::Point(9, 60);
+			this->buttonPi->Margin = System::Windows::Forms::Padding(2);
 			this->buttonPi->Name = L"buttonPi";
-			this->buttonPi->Size = System::Drawing::Size(118, 60);
+			this->buttonPi->Size = System::Drawing::Size(88, 49);
 			this->buttonPi->TabIndex = 4;
 			this->buttonPi->TabStop = false;
 			this->buttonPi->Text = L"π";
@@ -212,9 +223,10 @@ namespace Calculator {
 			this->buttonLn->Font = (gcnew System::Drawing::Font(L"Segoe UI", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonLn->ForeColor = System::Drawing::Color::White;
-			this->buttonLn->Location = System::Drawing::Point(12, 140);
+			this->buttonLn->Location = System::Drawing::Point(9, 114);
+			this->buttonLn->Margin = System::Windows::Forms::Padding(2);
 			this->buttonLn->Name = L"buttonLn";
-			this->buttonLn->Size = System::Drawing::Size(118, 60);
+			this->buttonLn->Size = System::Drawing::Size(88, 49);
 			this->buttonLn->TabIndex = 10;
 			this->buttonLn->TabStop = false;
 			this->buttonLn->Text = L"ln(x)";
@@ -229,9 +241,10 @@ namespace Calculator {
 			this->buttonSqrt->Font = (gcnew System::Drawing::Font(L"Segoe UI", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonSqrt->ForeColor = System::Drawing::Color::White;
-			this->buttonSqrt->Location = System::Drawing::Point(136, 207);
+			this->buttonSqrt->Location = System::Drawing::Point(102, 168);
+			this->buttonSqrt->Margin = System::Windows::Forms::Padding(2);
 			this->buttonSqrt->Name = L"buttonSqrt";
-			this->buttonSqrt->Size = System::Drawing::Size(118, 60);
+			this->buttonSqrt->Size = System::Drawing::Size(88, 49);
 			this->buttonSqrt->TabIndex = 17;
 			this->buttonSqrt->TabStop = false;
 			this->buttonSqrt->Text = L"√x";
@@ -246,9 +259,10 @@ namespace Calculator {
 			this->buttonPower->Font = (gcnew System::Drawing::Font(L"Segoe UI", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonPower->ForeColor = System::Drawing::Color::White;
-			this->buttonPower->Location = System::Drawing::Point(12, 206);
+			this->buttonPower->Location = System::Drawing::Point(9, 167);
+			this->buttonPower->Margin = System::Windows::Forms::Padding(2);
 			this->buttonPower->Name = L"buttonPower";
-			this->buttonPower->Size = System::Drawing::Size(118, 60);
+			this->buttonPower->Size = System::Drawing::Size(88, 49);
 			this->buttonPower->TabIndex = 16;
 			this->buttonPower->TabStop = false;
 			this->buttonPower->Text = L"^";
@@ -263,9 +277,10 @@ namespace Calculator {
 			this->buttonCtg->Font = (gcnew System::Drawing::Font(L"Segoe UI", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonCtg->ForeColor = System::Drawing::Color::White;
-			this->buttonCtg->Location = System::Drawing::Point(136, 338);
+			this->buttonCtg->Location = System::Drawing::Point(102, 275);
+			this->buttonCtg->Margin = System::Windows::Forms::Padding(2);
 			this->buttonCtg->Name = L"buttonCtg";
-			this->buttonCtg->Size = System::Drawing::Size(118, 60);
+			this->buttonCtg->Size = System::Drawing::Size(88, 49);
 			this->buttonCtg->TabIndex = 29;
 			this->buttonCtg->TabStop = false;
 			this->buttonCtg->Text = L"ctg(x)";
@@ -280,9 +295,10 @@ namespace Calculator {
 			this->buttonTg->Font = (gcnew System::Drawing::Font(L"Segoe UI", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonTg->ForeColor = System::Drawing::Color::White;
-			this->buttonTg->Location = System::Drawing::Point(12, 338);
+			this->buttonTg->Location = System::Drawing::Point(9, 275);
+			this->buttonTg->Margin = System::Windows::Forms::Padding(2);
 			this->buttonTg->Name = L"buttonTg";
-			this->buttonTg->Size = System::Drawing::Size(118, 60);
+			this->buttonTg->Size = System::Drawing::Size(88, 49);
 			this->buttonTg->TabIndex = 28;
 			this->buttonTg->TabStop = false;
 			this->buttonTg->Text = L"tg(x)";
@@ -297,9 +313,10 @@ namespace Calculator {
 			this->buttonCos->Font = (gcnew System::Drawing::Font(L"Segoe UI", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonCos->ForeColor = System::Drawing::Color::White;
-			this->buttonCos->Location = System::Drawing::Point(136, 271);
+			this->buttonCos->Location = System::Drawing::Point(102, 220);
+			this->buttonCos->Margin = System::Windows::Forms::Padding(2);
 			this->buttonCos->Name = L"buttonCos";
-			this->buttonCos->Size = System::Drawing::Size(118, 60);
+			this->buttonCos->Size = System::Drawing::Size(88, 49);
 			this->buttonCos->TabIndex = 23;
 			this->buttonCos->TabStop = false;
 			this->buttonCos->Text = L"cos(x)";
@@ -314,9 +331,10 @@ namespace Calculator {
 			this->buttonSin->Font = (gcnew System::Drawing::Font(L"Segoe UI", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonSin->ForeColor = System::Drawing::Color::White;
-			this->buttonSin->Location = System::Drawing::Point(12, 272);
+			this->buttonSin->Location = System::Drawing::Point(9, 221);
+			this->buttonSin->Margin = System::Windows::Forms::Padding(2);
 			this->buttonSin->Name = L"buttonSin";
-			this->buttonSin->Size = System::Drawing::Size(118, 60);
+			this->buttonSin->Size = System::Drawing::Size(88, 49);
 			this->buttonSin->TabIndex = 22;
 			this->buttonSin->TabStop = false;
 			this->buttonSin->Text = L"sin(x)";
@@ -331,9 +349,10 @@ namespace Calculator {
 			this->buttonEquals1->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonEquals1->ForeColor = System::Drawing::Color::White;
-			this->buttonEquals1->Location = System::Drawing::Point(508, 338);
+			this->buttonEquals1->Location = System::Drawing::Point(381, 275);
+			this->buttonEquals1->Margin = System::Windows::Forms::Padding(2);
 			this->buttonEquals1->Name = L"buttonEquals1";
-			this->buttonEquals1->Size = System::Drawing::Size(118, 60);
+			this->buttonEquals1->Size = System::Drawing::Size(88, 49);
 			this->buttonEquals1->TabIndex = 32;
 			this->buttonEquals1->TabStop = false;
 			this->buttonEquals1->Text = L"=";
@@ -348,9 +367,10 @@ namespace Calculator {
 			this->buttonPlus->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonPlus->ForeColor = System::Drawing::Color::White;
-			this->buttonPlus->Location = System::Drawing::Point(632, 140);
+			this->buttonPlus->Location = System::Drawing::Point(474, 114);
+			this->buttonPlus->Margin = System::Windows::Forms::Padding(2);
 			this->buttonPlus->Name = L"buttonPlus";
-			this->buttonPlus->Size = System::Drawing::Size(118, 60);
+			this->buttonPlus->Size = System::Drawing::Size(88, 49);
 			this->buttonPlus->TabIndex = 15;
 			this->buttonPlus->TabStop = false;
 			this->buttonPlus->Text = L"+";
@@ -365,9 +385,10 @@ namespace Calculator {
 			this->buttonDivision->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonDivision->ForeColor = System::Drawing::Color::White;
-			this->buttonDivision->Location = System::Drawing::Point(632, 338);
+			this->buttonDivision->Location = System::Drawing::Point(474, 275);
+			this->buttonDivision->Margin = System::Windows::Forms::Padding(2);
 			this->buttonDivision->Name = L"buttonDivision";
-			this->buttonDivision->Size = System::Drawing::Size(118, 60);
+			this->buttonDivision->Size = System::Drawing::Size(88, 49);
 			this->buttonDivision->TabIndex = 33;
 			this->buttonDivision->TabStop = false;
 			this->buttonDivision->Text = L"/";
@@ -382,9 +403,10 @@ namespace Calculator {
 			this->buttonMultiply->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonMultiply->ForeColor = System::Drawing::Color::White;
-			this->buttonMultiply->Location = System::Drawing::Point(632, 271);
+			this->buttonMultiply->Location = System::Drawing::Point(474, 220);
+			this->buttonMultiply->Margin = System::Windows::Forms::Padding(2);
 			this->buttonMultiply->Name = L"buttonMultiply";
-			this->buttonMultiply->Size = System::Drawing::Size(118, 60);
+			this->buttonMultiply->Size = System::Drawing::Size(88, 49);
 			this->buttonMultiply->TabIndex = 27;
 			this->buttonMultiply->TabStop = false;
 			this->buttonMultiply->Text = L"*";
@@ -399,9 +421,10 @@ namespace Calculator {
 			this->buttonMinus->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonMinus->ForeColor = System::Drawing::Color::White;
-			this->buttonMinus->Location = System::Drawing::Point(632, 206);
+			this->buttonMinus->Location = System::Drawing::Point(474, 167);
+			this->buttonMinus->Margin = System::Windows::Forms::Padding(2);
 			this->buttonMinus->Name = L"buttonMinus";
-			this->buttonMinus->Size = System::Drawing::Size(118, 60);
+			this->buttonMinus->Size = System::Drawing::Size(88, 49);
 			this->buttonMinus->TabIndex = 21;
 			this->buttonMinus->TabStop = false;
 			this->buttonMinus->Text = L"-";
@@ -416,9 +439,10 @@ namespace Calculator {
 			this->buttonPoint->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonPoint->ForeColor = System::Drawing::Color::White;
-			this->buttonPoint->Location = System::Drawing::Point(260, 338);
+			this->buttonPoint->Location = System::Drawing::Point(195, 275);
+			this->buttonPoint->Margin = System::Windows::Forms::Padding(2);
 			this->buttonPoint->Name = L"buttonPoint";
-			this->buttonPoint->Size = System::Drawing::Size(118, 60);
+			this->buttonPoint->Size = System::Drawing::Size(88, 49);
 			this->buttonPoint->TabIndex = 30;
 			this->buttonPoint->TabStop = false;
 			this->buttonPoint->Text = L".";
@@ -434,9 +458,10 @@ namespace Calculator {
 			this->buttonEquals2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonEquals2->ForeColor = System::Drawing::Color::White;
-			this->buttonEquals2->Location = System::Drawing::Point(508, 12);
+			this->buttonEquals2->Location = System::Drawing::Point(381, 10);
+			this->buttonEquals2->Margin = System::Windows::Forms::Padding(2);
 			this->buttonEquals2->Name = L"buttonEquals2";
-			this->buttonEquals2->Size = System::Drawing::Size(83, 43);
+			this->buttonEquals2->Size = System::Drawing::Size(62, 35);
 			this->buttonEquals2->TabIndex = 2;
 			this->buttonEquals2->TabStop = false;
 			this->buttonEquals2->Text = L"=";
@@ -451,9 +476,10 @@ namespace Calculator {
 			this->button0->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button0->ForeColor = System::Drawing::Color::White;
-			this->button0->Location = System::Drawing::Point(384, 338);
+			this->button0->Location = System::Drawing::Point(288, 275);
+			this->button0->Margin = System::Windows::Forms::Padding(2);
 			this->button0->Name = L"button0";
-			this->button0->Size = System::Drawing::Size(118, 60);
+			this->button0->Size = System::Drawing::Size(88, 49);
 			this->button0->TabIndex = 31;
 			this->button0->TabStop = false;
 			this->button0->Text = L"0";
@@ -468,9 +494,10 @@ namespace Calculator {
 			this->button9->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button9->ForeColor = System::Drawing::Color::White;
-			this->button9->Location = System::Drawing::Point(508, 140);
+			this->button9->Location = System::Drawing::Point(381, 114);
+			this->button9->Margin = System::Windows::Forms::Padding(2);
 			this->button9->Name = L"button9";
-			this->button9->Size = System::Drawing::Size(118, 60);
+			this->button9->Size = System::Drawing::Size(88, 49);
 			this->button9->TabIndex = 14;
 			this->button9->TabStop = false;
 			this->button9->Text = L"9";
@@ -485,9 +512,10 @@ namespace Calculator {
 			this->button8->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button8->ForeColor = System::Drawing::Color::White;
-			this->button8->Location = System::Drawing::Point(384, 140);
+			this->button8->Location = System::Drawing::Point(288, 114);
+			this->button8->Margin = System::Windows::Forms::Padding(2);
 			this->button8->Name = L"button8";
-			this->button8->Size = System::Drawing::Size(118, 60);
+			this->button8->Size = System::Drawing::Size(88, 49);
 			this->button8->TabIndex = 13;
 			this->button8->TabStop = false;
 			this->button8->Text = L"8";
@@ -502,9 +530,10 @@ namespace Calculator {
 			this->button7->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button7->ForeColor = System::Drawing::Color::White;
-			this->button7->Location = System::Drawing::Point(260, 140);
+			this->button7->Location = System::Drawing::Point(195, 114);
+			this->button7->Margin = System::Windows::Forms::Padding(2);
 			this->button7->Name = L"button7";
-			this->button7->Size = System::Drawing::Size(118, 60);
+			this->button7->Size = System::Drawing::Size(88, 49);
 			this->button7->TabIndex = 12;
 			this->button7->TabStop = false;
 			this->button7->Text = L"7";
@@ -519,9 +548,10 @@ namespace Calculator {
 			this->button6->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button6->ForeColor = System::Drawing::Color::White;
-			this->button6->Location = System::Drawing::Point(508, 206);
+			this->button6->Location = System::Drawing::Point(381, 167);
+			this->button6->Margin = System::Windows::Forms::Padding(2);
 			this->button6->Name = L"button6";
-			this->button6->Size = System::Drawing::Size(118, 60);
+			this->button6->Size = System::Drawing::Size(88, 49);
 			this->button6->TabIndex = 20;
 			this->button6->TabStop = false;
 			this->button6->Text = L"6";
@@ -536,9 +566,10 @@ namespace Calculator {
 			this->button5->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button5->ForeColor = System::Drawing::Color::White;
-			this->button5->Location = System::Drawing::Point(384, 206);
+			this->button5->Location = System::Drawing::Point(288, 167);
+			this->button5->Margin = System::Windows::Forms::Padding(2);
 			this->button5->Name = L"button5";
-			this->button5->Size = System::Drawing::Size(118, 60);
+			this->button5->Size = System::Drawing::Size(88, 49);
 			this->button5->TabIndex = 19;
 			this->button5->TabStop = false;
 			this->button5->Text = L"5";
@@ -553,9 +584,10 @@ namespace Calculator {
 			this->button4->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button4->ForeColor = System::Drawing::Color::White;
-			this->button4->Location = System::Drawing::Point(260, 206);
+			this->button4->Location = System::Drawing::Point(195, 167);
+			this->button4->Margin = System::Windows::Forms::Padding(2);
 			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(118, 60);
+			this->button4->Size = System::Drawing::Size(88, 49);
 			this->button4->TabIndex = 18;
 			this->button4->TabStop = false;
 			this->button4->Text = L"4";
@@ -570,9 +602,10 @@ namespace Calculator {
 			this->button3->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button3->ForeColor = System::Drawing::Color::White;
-			this->button3->Location = System::Drawing::Point(508, 272);
+			this->button3->Location = System::Drawing::Point(381, 221);
+			this->button3->Margin = System::Windows::Forms::Padding(2);
 			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(118, 60);
+			this->button3->Size = System::Drawing::Size(88, 49);
 			this->button3->TabIndex = 26;
 			this->button3->TabStop = false;
 			this->button3->Text = L"3";
@@ -587,9 +620,10 @@ namespace Calculator {
 			this->button2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button2->ForeColor = System::Drawing::Color::White;
-			this->button2->Location = System::Drawing::Point(384, 272);
+			this->button2->Location = System::Drawing::Point(288, 221);
+			this->button2->Margin = System::Windows::Forms::Padding(2);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(118, 60);
+			this->button2->Size = System::Drawing::Size(88, 49);
 			this->button2->TabIndex = 25;
 			this->button2->TabStop = false;
 			this->button2->Text = L"2";
@@ -604,9 +638,10 @@ namespace Calculator {
 			this->button1->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button1->ForeColor = System::Drawing::Color::White;
-			this->button1->Location = System::Drawing::Point(260, 271);
+			this->button1->Location = System::Drawing::Point(195, 220);
+			this->button1->Margin = System::Windows::Forms::Padding(2);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(118, 60);
+			this->button1->Size = System::Drawing::Size(88, 49);
 			this->button1->TabIndex = 24;
 			this->button1->TabStop = false;
 			this->button1->Text = L"1";
@@ -620,13 +655,13 @@ namespace Calculator {
 			this->Answer->Cursor = System::Windows::Forms::Cursors::Default;
 			this->Answer->Font = (gcnew System::Drawing::Font(L"Segoe UI", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->Answer->Location = System::Drawing::Point(597, 12);
+			this->Answer->Location = System::Drawing::Point(448, 10);
+			this->Answer->Margin = System::Windows::Forms::Padding(2);
 			this->Answer->Name = L"Answer";
 			this->Answer->ReadOnly = true;
-			this->Answer->Size = System::Drawing::Size(153, 43);
+			this->Answer->Size = System::Drawing::Size(116, 36);
 			this->Answer->TabIndex = 3;
 			this->Answer->TabStop = false;
-			this->Answer->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// Expression
 			// 
@@ -634,10 +669,11 @@ namespace Calculator {
 			this->Expression->BackColor = System::Drawing::Color::WhiteSmoke;
 			this->Expression->Font = (gcnew System::Drawing::Font(L"Segoe UI", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->Expression->Location = System::Drawing::Point(12, 12);
+			this->Expression->Location = System::Drawing::Point(9, 10);
+			this->Expression->Margin = System::Windows::Forms::Padding(2);
 			this->Expression->Name = L"Expression";
 			this->Expression->RightToLeft = System::Windows::Forms::RightToLeft::No;
-			this->Expression->Size = System::Drawing::Size(490, 43);
+			this->Expression->Size = System::Drawing::Size(368, 36);
 			this->Expression->TabIndex = 1;
 			this->Expression->TabStop = false;
 			this->Expression->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
@@ -650,9 +686,10 @@ namespace Calculator {
 			this->buttonLeftBracket->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonLeftBracket->ForeColor = System::Drawing::Color::White;
-			this->buttonLeftBracket->Location = System::Drawing::Point(260, 74);
+			this->buttonLeftBracket->Location = System::Drawing::Point(195, 60);
+			this->buttonLeftBracket->Margin = System::Windows::Forms::Padding(2);
 			this->buttonLeftBracket->Name = L"buttonLeftBracket";
-			this->buttonLeftBracket->Size = System::Drawing::Size(118, 60);
+			this->buttonLeftBracket->Size = System::Drawing::Size(88, 49);
 			this->buttonLeftBracket->TabIndex = 6;
 			this->buttonLeftBracket->TabStop = false;
 			this->buttonLeftBracket->Text = L"(";
@@ -667,9 +704,10 @@ namespace Calculator {
 			this->buttonRightBracket->Font = (gcnew System::Drawing::Font(L"Segoe UI", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonRightBracket->ForeColor = System::Drawing::Color::White;
-			this->buttonRightBracket->Location = System::Drawing::Point(384, 74);
+			this->buttonRightBracket->Location = System::Drawing::Point(288, 60);
+			this->buttonRightBracket->Margin = System::Windows::Forms::Padding(2);
 			this->buttonRightBracket->Name = L"buttonRightBracket";
-			this->buttonRightBracket->Size = System::Drawing::Size(118, 60);
+			this->buttonRightBracket->Size = System::Drawing::Size(88, 49);
 			this->buttonRightBracket->TabIndex = 7;
 			this->buttonRightBracket->TabStop = false;
 			this->buttonRightBracket->Text = L")";
@@ -678,12 +716,12 @@ namespace Calculator {
 			// 
 			// Calculator
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->BackColor = System::Drawing::Color::Silver;
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->ClientSize = System::Drawing::Size(761, 408);
+			this->ClientSize = System::Drawing::Size(572, 338);
 			this->Controls->Add(this->buttonRightBracket);
 			this->Controls->Add(this->buttonLeftBracket);
 			this->Controls->Add(this->buttonAbs);
@@ -720,8 +758,10 @@ namespace Calculator {
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->KeyPreview = true;
-			this->MaximumSize = System::Drawing::Size(779, 455);
-			this->MinimumSize = System::Drawing::Size(779, 455);
+			this->Margin = System::Windows::Forms::Padding(2);
+			this->MaximizeBox = false;
+			this->MaximumSize = System::Drawing::Size(588, 377);
+			this->MinimumSize = System::Drawing::Size(588, 377);
 			this->Name = L"Calculator";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Scientific Calculator";
@@ -733,159 +773,159 @@ namespace Calculator {
 #pragma endregion
 	private: System::Void button0_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"0";
+		Expression->SelectedText = L"0";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"1";
+		Expression->SelectedText = L"1";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"2";
+		Expression->SelectedText = L"2";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"3";
+		Expression->SelectedText = L"3";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"4";
+		Expression->SelectedText = L"4";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"5";
+		Expression->SelectedText = L"5";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"6";
+		Expression->SelectedText = L"6";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"7";
+		Expression->SelectedText = L"7";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"8";
+		Expression->SelectedText = L"8";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void button9_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"9";
+		Expression->SelectedText = L"9";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonPoint_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L".";
+		Expression->SelectedText = L".";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonPlus_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"+";
+		Expression->SelectedText = L"+";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonMinus_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"-";
+		Expression->SelectedText = L"-";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonMultiply_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"*";
+		Expression->SelectedText = L"*";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonDivision_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"/";
+		Expression->SelectedText = L"/";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonPower_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"^";
+		Expression->SelectedText = L"^";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonSqrt_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"sqrt";
+		Expression->SelectedText = L"sqrt(";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonSin_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"sin";
+		Expression->SelectedText = L"sin(";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonCos_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"cos";
+		Expression->SelectedText = L"cos(";
 		Answer->Text = "";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonTg_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"tg";
+		Expression->SelectedText = L"tg(";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonCtg_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"ctg";
+		Expression->SelectedText = L"ctg(";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonLn_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"ln";
+		Expression->SelectedText = L"ln(";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonAbs_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"abs";
+		Expression->SelectedText = L"abs(";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonLeftBracket_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"(";
+		Expression->SelectedText = L"(";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonRightBracket_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L")";
+		Expression->SelectedText = L")";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonClear_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		Expression->Text = L"";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonBackspace_Click(System::Object^ sender, System::EventArgs^ e)
 	{
@@ -910,19 +950,20 @@ namespace Calculator {
 
 		Answer->Text = L"";
 
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
+		Expression->SelectionStart = Expression->TextLength;
 	}
 	private: System::Void buttonPi_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"pi";
+		Expression->SelectedText = L"pi";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonE_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Expression->Text += L"e";
+		Expression->SelectedText = L"e";
 		Answer->Text = L"";
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
 	}
 	private: System::Void buttonEquals1_Click(System::Object^ sender, System::EventArgs^ e)
 	{
@@ -936,35 +977,20 @@ namespace Calculator {
 		try
 		{
 			Answer->Text = gcnew String(std::to_string(count(expression)).c_str());
+			Expression->Text = gcnew String(expression.c_str());
 		}
-		catch (UnexpectedSymbolError& E)
+		catch (UnexpectedSymbolError& Ex)
 		{
 			Answer->Text = L"ОШИБКА";
-			MessageBox::Show(gcnew String(E.get_message().c_str()), "", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			MessageBox::Show(gcnew String(Ex.get_message().c_str()), "", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 
-		this->ActiveControl = nullptr;
+		this->ActiveControl = Expression;
+		Expression->SelectionStart = Expression->Text->Length;
 	}
 	private: System::Void buttonEquals2_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		using namespace Runtime::InteropServices;
-
-		String^ managedString = Expression->Text;
-		const char* chars = (const char*)(Marshal::StringToHGlobalAnsi(managedString)).ToPointer();
-		std::string expression = chars;
-		Marshal::FreeHGlobal(IntPtr((void*)chars));
-
-		try
-		{
-			Answer->Text = gcnew String(std::to_string(count(expression)).c_str());
-		}
-		catch (UnexpectedSymbolError& E)
-		{
-			Answer->Text = L"ОШИБКА";
-			MessageBox::Show(gcnew String(E.get_message().c_str()), "", MessageBoxButtons::OK, MessageBoxIcon::Error);
-		}
-
-		this->ActiveControl = nullptr;
+		buttonEquals1->PerformClick();
 	}
 	private: System::Void Calculator_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e)
 	{
@@ -975,6 +1001,10 @@ namespace Calculator {
 			break;
 		case Keys::Escape:
 			buttonClear->PerformClick();
+			break;
+		case Keys::Back:
+			Answer->Text = L"";
+			this->ActiveControl = Expression;
 			break;
 		}
 	}

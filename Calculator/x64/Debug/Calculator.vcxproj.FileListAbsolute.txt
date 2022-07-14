@@ -1,4 +1,14 @@
-C:\Users\Александр\source\repos\Calculator\Calculator\x64\Debug\Calculator.vcxproj.AssemblyReference.cache
-C:\Users\Александр\source\repos\Calculator\Calculator\x64\Debug\Calculator.vcxproj.SuggestedBindingRedirects.cache
-C:\Users\Александр\source\repos\Calculator\Calculator\x64\Debug\Calculator.Calculator.resources
-C:\Users\Александр\source\repos\Calculator\Calculator\x64\Debug\Calculator.vcxproj.GenerateResource.cache
+C:\Users\Студент\source\repos\Calculator\Calculator\x64\Debug\Calculator.Calculator.resources
+C:\Users\Студент\source\repos\Calculator\Calculator\x64\Debug\Calculator.vcxproj.GenerateResource.cache
+C:\Users\Студент\source\repos\Calculator\Calculator\x64\Debug\Calculator.vcxproj.AssemblyReference.cache
+F:\NewCalc\Calculator\Calculator\x64\Debug\Calculator.vcxproj.AssemblyReference.cache
+F:\NewCalc\Calculator\Calculator\x64\Debug\Calculator.vcxproj.SuggestedBindingRedirects.cache
+F:\NewCalc\Calculator\Calculator\x64\Debug\Calculator.Calculator.resources
+F:\NewCalc\Calculator\Calculator\x64\Debug\Calculator.vcxproj.GenerateResource.cache
+F:\Не робит парсер\Calculator\Calculator\x64\Debug\Calculator.vcxproj.AssemblyReference.cache
+F:\Не робит парсер\Calculator\Calculator\x64\Debug\Calculator.vcxproj.SuggestedBindingRedirects.cache
+F:\Не робит парсер\Calculator\Calculator\x64\Debug\Calculator.Calculator.resources
+F:\Не робит парсер\Calculator\Calculator\x64\Debug\Calculator.vcxproj.GenerateResource.cache
+D:\Не робит парсер\Calculator\Calculator\x64\Debug\Calculator.vcxproj.AssemblyReference.cache
+D:\Не робит парсер\Calculator\Calculator\x64\Debug\Calculator.Calculator.resources
+D:\Не робит парсер\Calculator\Calculator\x64\Debug\Calculator.vcxproj.GenerateResource.cache
