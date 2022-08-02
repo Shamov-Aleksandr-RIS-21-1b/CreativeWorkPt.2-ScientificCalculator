@@ -1,4 +1,23 @@
 ﻿  Calculator.cpp
+C:\Users\Александр\source\repos\Calculator\Calculator\Parser.h(81,145): warning C4267: аргумент: преобразование из "size_t" в "const int"; возможна потеря данных
+C:\Users\Александр\source\repos\Calculator\Calculator\Parser.h(98,146): warning C4267: аргумент: преобразование из "size_t" в "const int"; возможна потеря данных
+C:\Users\Александр\source\repos\Calculator\Calculator\Parser.h(120,173): warning C4267: аргумент: преобразование из "size_t" в "const int"; возможна потеря данных
+C:\Users\Александр\source\repos\Calculator\Calculator\Parser.h(133,174): warning C4267: аргумент: преобразование из "size_t" в "const int"; возможна потеря данных
+C:\Users\Александр\source\repos\Calculator\Calculator\Parser.h(150,137): warning C4267: аргумент: преобразование из "size_t" в "const int"; возможна потеря данных
+C:\Users\Александр\source\repos\Calculator\Calculator\Parser.h(153,138): warning C4267: аргумент: преобразование из "size_t" в "const int"; возможна потеря данных
+C:\Users\Александр\source\repos\Calculator\Calculator\Parser.h(165,162): warning C4267: аргумент: преобразование из "size_t" в "const int"; возможна потеря данных
+C:\Users\Александр\source\repos\Calculator\Calculator\Parser.h(167,135): warning C4267: аргумент: преобразование из "size_t" в "const int"; возможна потеря данных
+C:\Users\Александр\source\repos\Calculator\Calculator\Parser.h(192,151): warning C4267: аргумент: преобразование из "size_t" в "const int"; возможна потеря данных
+C:\Users\Александр\source\repos\Calculator\Calculator\Parser.h(237,186): warning C4267: аргумент: преобразование из "size_t" в "const int"; возможна потеря данных
+C:\Users\Александр\source\repos\Calculator\Calculator\Parser.h(246,134): warning C4267: аргумент: преобразование из "size_t" в "const int"; возможна потеря данных
+C:\Users\Александр\source\repos\Calculator\Calculator\Parser.h(258,155): warning C4267: аргумент: преобразование из "size_t" в "const int"; возможна потеря данных
+C:\Users\Александр\source\repos\Calculator\Calculator\Parser.h(280,164): warning C4267: аргумент: преобразование из "size_t" в "const int"; возможна потеря данных
+C:\Users\Александр\source\repos\Calculator\Calculator\Parser.h(357,130): warning C4267: аргумент: преобразование из "size_t" в "const int"; возможна потеря данных
+C:\Users\Александр\source\repos\Calculator\Calculator\Parser.h(411,130): warning C4267: аргумент: преобразование из "size_t" в "const int"; возможна потеря данных
+C:\Users\Александр\source\repos\Calculator\Calculator\Parser.h(441,130): warning C4267: аргумент: преобразование из "size_t" в "const int"; возможна потеря данных
+C:\Users\Александр\source\repos\Calculator\Calculator\Parser.h(451,129): warning C4267: аргумент: преобразование из "size_t" в "const int"; возможна потеря данных
+C:\Users\Александр\source\repos\Calculator\Calculator\Parser.h(471,142): warning C4267: аргумент: преобразование из "size_t" в "const int"; возможна потеря данных
+C:\Users\Александр\source\repos\Calculator\Calculator\Parser.h(473,148): warning C4267: аргумент: преобразование из "size_t" в "const int"; возможна потеря данных
 C:\Users\Александр\source\repos\Calculator\Calculator\Calculator.cpp(9,1): warning C4829: Возможно, неправильные параметры функции main. Рекомендуемый вариант - "int main(Platform::Array<Platform::String^>^ argv)"
   Calculator.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
   Calculator.vcxproj -> C:\Users\Александр\source\repos\Calculator\x64\Debug\Calculator.exe

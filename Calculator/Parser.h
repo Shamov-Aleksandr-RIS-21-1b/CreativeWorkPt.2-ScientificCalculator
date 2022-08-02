@@ -16,7 +16,7 @@ public:
 		this->index = index;
 		if (index != -1)
 		{
-			this->message += "\nИндекс символа: " + std::to_string(index);
+			this->message += std::to_string(index);
 		}
 	}
 	std::string get_message()
@@ -31,26 +31,26 @@ public:
 
 #define PI 3.141593
 #define ex exp(1)
+int multiply_count = 0;
 
 enum LexemeType
 {
 	LeftBracket = 0, 
 	RightBracket,
 	Plus,
-	Minus, UnaryMinus,
+	Minus, 
+	UnaryMinus,
 	Multiply,
 	Division,
-	Number,
+	Power,
 	Sinus, 
 	Cosin,
 	Tang,
 	Ctan,
 	Sqrt,
-	Power,
-	Pi,
-	Exp,
 	Ln,
-	Abs
+	Abs,
+	Number,
 };
 
 class Lexeme
@@ -71,26 +71,181 @@ public:
 	}
 };
 
-std::vector<Lexeme> parse_to_lexems(const std::string& expression)
+bool checkBinaryOperation(const std::vector<Lexeme>& Lexemes, const std::string expression, const int& index)
+{
+	if (expression[index] != '-')
+	{
+		if (Lexemes.size() == 0)
+			throw UnexpectedSymbolError("Ожидалось выражение.\nОшибка перед словом № ", 1);
+		else if (Lexemes.back().type != Number && Lexemes.back().type != RightBracket)
+			throw UnexpectedSymbolError("Операция не ожидалась.\nОшибка в слове № ", Lexemes.size() - multiply_count + 1);
+		return false;
+	}
+	else
+	{
+		if (Lexemes.size() == 0)
+			return true;
+		else
+		{
+			switch (Lexemes.back().type)
+			{
+			case Plus:
+			case Minus:
+			case UnaryMinus:
+			case Multiply:
+			case Division:
+			case Power:
+				throw UnexpectedSymbolError("Операция не ожидалась.\nОшибка в слове № ", Lexemes.size() - multiply_count + 1);
+			case LeftBracket:
+			case Sinus:
+			case Cosin:
+			case Tang:
+			case Ctan:
+			case Sqrt:
+			case Ln:
+			case Abs:
+				return true;
+			default:
+				return false;
+			}
+		}
+	}
+}
+
+void checkRightBracket(const std::vector<Lexeme>& Lexemes)
+{
+	if (Lexemes.size() == 0) throw UnexpectedSymbolError("Ожидалась открывающая скобка перед словом № ", 1);
+	else if (Lexemes.back().type != Number && Lexemes.back().type != RightBracket)
+	{
+		throw UnexpectedSymbolError("Ожидалось выражение перед закрывающей скобкой. Слово № ", Lexemes.size() - multiply_count + 1);
+	}
+}
+
+void checkLeftBracket(std::vector<Lexeme>& Lexemes, const std::string& expression, const int& index)
+{
+	if (Lexemes.size() > 0)
+	{
+		if (Lexemes.back().type == Number || Lexemes.back().type == RightBracket)
+		{
+			if (index - 1 >= 0)
+			{
+				if (expression[index - 1] == ' ')
+					throw UnexpectedSymbolError("Ожидалась операция перед открывающей скобкой. Слово № ", Lexemes.size() - multiply_count + 1);
+			}
+			Lexemes.push_back(Lexeme(Multiply, ""));
+			multiply_count++;
+		}
+	}
+}
+
+void check_UnaryOperation_Const(std::vector<Lexeme>& Lexemes, const std::string& expression, const int& index)
+{
+	if (Lexemes.size() > 0)
+	{
+		if (Lexemes.back().type == Number || Lexemes.back().type == RightBracket)
+		{
+			if (index - 1 >= 0)
+			{
+				if (expression[index - 1] == ' ')
+					throw UnexpectedSymbolError("Ожидалась операция перед словом № ", Lexemes.size() - multiply_count + 1);
+			}
+			if (Lexemes.back().value == std::to_string(PI) || Lexemes.back().value == std::to_string(ex))
+				throw UnexpectedSymbolError("Ожидалась операция после константы № ", Lexemes.size() - multiply_count);
+			Lexemes.push_back(Lexeme(Multiply, ""));
+			multiply_count++;
+		}
+	}
+}
+
+void checkNumber(const std::vector<Lexeme>& Lexemes)
+{
+	if (Lexemes.size() > 0)
+	{
+		if (Lexemes.back().type == Number)
+			throw UnexpectedSymbolError("Между числами ожидалась операция. Перед словом № ", Lexemes.size() - multiply_count + 1);
+		else if (Lexemes.back().type == RightBracket)
+			throw UnexpectedSymbolError("Ожидалась операция перед словом № ", Lexemes.size() - multiply_count + 1);
+	}
+}
+
+std::vector<Lexeme> parse_to_lexems(std::string& expression)
 {
 	std::vector<Lexeme> Lexemes;
 	int i = 0;
 	int BracketCount = 0;
 	while (i < expression.size())
 	{
-		if (expression[i] == '(') { Lexemes.push_back(Lexeme(LeftBracket, "(")); ++i; ++BracketCount; }
-		else if (expression[i] == ')') { Lexemes.push_back(Lexeme(RightBracket, ")")); ++i; --BracketCount; }
-		else if (expression[i] == '+') { Lexemes.push_back(Lexeme(Plus, "+")); ++i; }
-		else if (expression[i] == '-') { Lexemes.push_back(Lexeme(Minus, "-")); ++i; }
-		else if (expression[i] == '/' || expression[i] == ':') { Lexemes.push_back(Lexeme(Division, "/")); ++i; }
-		else if (expression[i] == '*') { Lexemes.push_back(Lexeme(Multiply, "*")); ++i; }
-		else if (expression[i] == '^') { Lexemes.push_back(Lexeme(Power, "^")); ++i; }
-		else if (expression[i] >= '0' && expression[i] <= '9')
+		if (expression[i] == '(')
+		{ 
+			checkLeftBracket(Lexemes, expression, i);
+			Lexemes.push_back(Lexeme(LeftBracket, "("));
+			++i;
+			++BracketCount;
+		}
+		else if (expression[i] == ')') 
+		{
+			checkRightBracket(Lexemes);
+			Lexemes.push_back(Lexeme(RightBracket, ")")); 
+			++i;
+			--BracketCount;
+			if (BracketCount < 0)
+				throw UnexpectedSymbolError("Ожидалась открывающая скобка перед словом № ", Lexemes.size() - multiply_count);
+		}
+		else if (expression[i] == '+') 
+		{ 
+			checkBinaryOperation(Lexemes, expression, i);
+			Lexemes.push_back(Lexeme(Plus, "+"));
+			++i;
+		}
+		else if (expression[i] == '-') 
+		{ 
+			if (checkBinaryOperation(Lexemes, expression, i))
+			  Lexemes.push_back(Lexeme(UnaryMinus, "-")); 
+			else
+			  Lexemes.push_back(Lexeme(Minus, "-"));
+			++i; 
+		}
+		else if (expression[i] == '/' || expression[i] == ':')
+		{
+			checkBinaryOperation(Lexemes, expression, i);
+			Lexemes.push_back(Lexeme(Division, "/"));
+			++i; 
+		}
+		else if (expression[i] == '*')
+		{
+			checkBinaryOperation(Lexemes, expression, i);
+			Lexemes.push_back(Lexeme(Multiply, "*")); 
+			++i;
+		}
+		else if (expression[i] == '^')
+		{
+			checkBinaryOperation(Lexemes, expression, i);
+			Lexemes.push_back(Lexeme(Power, "^"));
+			++i;
+		}
+		else if (expression[i] >= '0' && expression[i] <= '9' || expression[i] == '.')
 		{
 			int tmp_begin_index = i;
 			std::string number = "";
 			bool Continue = true;
 			bool point = false;
+
+			if (expression[i] == '.')
+			{
+				if (i + 1 < expression.size())
+				{
+					if (expression[i + 1] < '0' || expression[i + 1] > '9') throw UnexpectedSymbolError("Разделитель вне числа. Слово № ", Lexemes.size() - multiply_count + 1);
+					else
+					{
+						number += "0.";
+						expression.insert(i, "0");
+						i += 2;
+						point = true;
+					}
+				}
+				else throw UnexpectedSymbolError("Разделитель вне числа. Слово № ", Lexemes.size() - multiply_count + 1);
+			}
+
 			do
 			{
 				if (expression[i] == '.')
@@ -100,7 +255,7 @@ std::vector<Lexeme> parse_to_lexems(const std::string& expression)
 						number += expression[i];
 						point = true;
 					}
-					else throw UnexpectedSymbolError("Более одного разделителя в числе.", i);
+					else throw UnexpectedSymbolError("Более одного разделителя в числе. Слово № ", Lexemes.size() - multiply_count + 1);
 				}
 				else number += expression[i];
 				
@@ -109,142 +264,218 @@ std::vector<Lexeme> parse_to_lexems(const std::string& expression)
 				if (Continue) Continue = expression[i] >= '0' && expression[i] <= '9' || expression[i] == '.';
 			} while (Continue);
 
-			if (number[number.size() - 1] == '.') throw UnexpectedSymbolError("Число не может оканчиваться разделителем.", i - 1);
+			if (number[number.size() - 1] == '.')
+			{
+				number += "0";
+				expression.insert(i, "0");
+				++i;
+				checkNumber(Lexemes);
+				Lexemes.push_back(Lexeme(Number, number));
+			}
+
 			else if (number[0] == '0')
 			{
 				if (number.size() >= 2)
 				{
-					if (number[1] != '.') throw UnexpectedSymbolError("Число не может начинаться с 0.", tmp_begin_index);
-					else Lexemes.push_back(Lexeme(Number, number));
+					if (number[1] != '.') throw UnexpectedSymbolError("Число не может начинаться с 0. Слово № ", Lexemes.size() - multiply_count + 1);
+					else
+					{
+						checkNumber(Lexemes);
+						Lexemes.push_back(Lexeme(Number, number));
+					}
 				}
-				else Lexemes.push_back(Lexeme(Number, number));
+				else
+				{
+					checkNumber(Lexemes);
+					Lexemes.push_back(Lexeme(Number, number));
+				}
 			}
-			else Lexemes.push_back(Lexeme(Number, number));
+			else
+			{
+				checkNumber(Lexemes);
+				Lexemes.push_back(Lexeme(Number, number));
+			}
 		}
 
 		else if (i + 3 < expression.size())
 		{
-			if (expression.substr(i, 4) == "sqrt") { Lexemes.push_back(Lexeme(Sqrt, "sqrt")); i += 4; }
-			else if (expression.substr(i, 3) == "sin") { Lexemes.push_back(Lexeme(Sinus, "sin")); i += 3; }
-			else if (expression.substr(i, 3) == "cos") { Lexemes.push_back(Lexeme(Cosin, "cos")); i += 3; }
-			else if (expression.substr(i, 3) == "ctg") { Lexemes.push_back(Lexeme(Ctan, "ctg")); i += 3; }
-			else if (expression.substr(i, 3) == "abs") { Lexemes.push_back(Lexeme(Abs, "abs")); i += 3; }
-			else if (expression.substr(i, 2) == "tg") { Lexemes.push_back(Lexeme(Tang, "tg")); i += 2; }
-			else if (expression.substr(i, 2) == "ln") { Lexemes.push_back(Lexeme(Ln, "ln")); i += 2; }
-			else if (expression.substr(i, 2) == "pi") { Lexemes.push_back(Lexeme(Number, std::to_string(PI))); i += 2; }
-			else if (expression[i] == 'e') { Lexemes.push_back(Lexeme(Number, std::to_string(ex))); ++i; }
+			if (expression.substr(i, 4) == "sqrt") 
+			{
+				check_UnaryOperation_Const(Lexemes, expression, i);
+				Lexemes.push_back(Lexeme(Sqrt, "sqrt"));
+				i += 4;
+			}
+			else if (expression.substr(i, 3) == "sin")
+			{
+				check_UnaryOperation_Const(Lexemes, expression, i);
+				Lexemes.push_back(Lexeme(Sinus, "sin")); 
+				i += 3;
+			}
+			else if (expression.substr(i, 3) == "cos")
+			{
+				check_UnaryOperation_Const(Lexemes, expression, i);
+				Lexemes.push_back(Lexeme(Cosin, "cos"));
+				i += 3;
+			}
+			else if (expression.substr(i, 3) == "ctg")
+			{
+				check_UnaryOperation_Const(Lexemes, expression, i);
+				Lexemes.push_back(Lexeme(Ctan, "ctg")); 
+				i += 3;
+			}
+			else if (expression.substr(i, 3) == "abs") 
+			{
+				check_UnaryOperation_Const(Lexemes, expression, i);
+				Lexemes.push_back(Lexeme(Abs, "abs")); 
+				i += 3;
+			}
+			else if (expression.substr(i, 2) == "tg") 
+			{
+				check_UnaryOperation_Const(Lexemes, expression, i);
+				Lexemes.push_back(Lexeme(Tang, "tg"));
+				i += 2; 
+			}
+			else if (expression.substr(i, 2) == "ln") 
+			{
+				check_UnaryOperation_Const(Lexemes, expression, i); 
+				Lexemes.push_back(Lexeme(Ln, "ln"));
+				i += 2;
+			}
+			else if (expression.substr(i, 2) == "pi")
+			{
+				check_UnaryOperation_Const(Lexemes, expression, i);
+				Lexemes.push_back(Lexeme(Number, std::to_string(PI)));
+				i += 2;
+			}
+			else if (expression[i] == 'e')
+			{
+				check_UnaryOperation_Const(Lexemes, expression, i);
+				Lexemes.push_back(Lexeme(Number, std::to_string(ex)));
+				++i;
+			}
 			else if (expression[i] == ' ') ++i;
-			else if (expression[i] == '.') throw UnexpectedSymbolError("Разделитель вне числа.", i);
-			else throw UnexpectedSymbolError("Недопустимый символ.", i);
+			else throw UnexpectedSymbolError("Недопустимый символ. Слово № ", Lexemes.size() - multiply_count + 1);
 		}
 
 		else if (i + 2 < expression.size())
 		{
-			if (expression.substr(i, 3) == "sin") { Lexemes.push_back(Lexeme(Sinus, "sin")); i += 3;}
-			else if (expression.substr(i, 3) == "cos") { Lexemes.push_back(Lexeme(Cosin, "cos")); i += 3; }
-			else if (expression.substr(i, 3) == "ctg") { Lexemes.push_back(Lexeme(Ctan, "ctg")); i += 3; }
-			else if (expression.substr(i, 3) == "abs") { Lexemes.push_back(Lexeme(Abs, "abs")); i += 3; }
-			else if (expression.substr(i, 2) == "tg") { Lexemes.push_back(Lexeme(Tang, "tg")); i += 2; }
-			else if (expression.substr(i, 2) == "ln") { Lexemes.push_back(Lexeme(Ln, "ln")); i += 2; }
-			else if (expression.substr(i, 2) == "pi") { Lexemes.push_back(Lexeme(Number, std::to_string(PI))); i += 2; }
-			else if (expression[i] == 'e') { Lexemes.push_back(Lexeme(Number, std::to_string(ex))); ++i; }
+			if (expression.substr(i, 3) == "sin")
+			{
+				check_UnaryOperation_Const(Lexemes, expression, i);
+				Lexemes.push_back(Lexeme(Sinus, "sin")); 
+				i += 3;
+			}
+			else if (expression.substr(i, 3) == "cos")
+			{
+				check_UnaryOperation_Const(Lexemes, expression, i);
+				Lexemes.push_back(Lexeme(Cosin, "cos"));
+				i += 3;
+			}
+			else if (expression.substr(i, 3) == "ctg")
+			{
+				check_UnaryOperation_Const(Lexemes, expression, i);
+				Lexemes.push_back(Lexeme(Ctan, "ctg")); 
+				i += 3;
+			}
+			else if (expression.substr(i, 3) == "abs") 
+			{
+				check_UnaryOperation_Const(Lexemes, expression, i);
+				Lexemes.push_back(Lexeme(Abs, "abs")); 
+				i += 3;
+			}
+			else if (expression.substr(i, 2) == "tg") 
+			{
+				check_UnaryOperation_Const(Lexemes, expression, i);
+				Lexemes.push_back(Lexeme(Tang, "tg"));
+				i += 2; 
+			}
+			else if (expression.substr(i, 2) == "ln") 
+			{
+				check_UnaryOperation_Const(Lexemes, expression, i); 
+				Lexemes.push_back(Lexeme(Ln, "ln"));
+				i += 2;
+			}
+			else if (expression.substr(i, 2) == "pi")
+			{
+				check_UnaryOperation_Const(Lexemes, expression, i);
+				Lexemes.push_back(Lexeme(Number, std::to_string(PI)));
+				i += 2;
+			}
+			else if (expression[i] == 'e')
+			{
+				check_UnaryOperation_Const(Lexemes, expression, i);
+				Lexemes.push_back(Lexeme(Number, std::to_string(ex)));
+				++i;
+			}
 			else if (expression[i] == ' ') ++i;
-			else if (expression[i] == '.') throw UnexpectedSymbolError("Разделитель вне числа.", i);
-			else throw UnexpectedSymbolError("Недопустимый символ.", i);
+			else throw UnexpectedSymbolError("Недопустимый символ. Слово № ", Lexemes.size() - multiply_count + 1);
 		}
 	
 		else if (i + 1 < expression.size())
 		{
-			if (expression.substr(i, 2) == "tg") { Lexemes.push_back(Lexeme(Tang, "tg")); i += 2; }
-			else if (expression.substr(i, 2) == "ln") { Lexemes.push_back(Lexeme(Ln, "ln")); i += 2; }
-			else if (expression.substr(i, 2) == "pi") { Lexemes.push_back(Lexeme(Number, std::to_string(PI))); i += 2; }
-			else if (expression[i] == 'e') { Lexemes.push_back(Lexeme(Number, std::to_string(ex))); ++i; }
+			if (expression.substr(i, 2) == "tg") 
+			{
+				check_UnaryOperation_Const(Lexemes, expression, i);
+				Lexemes.push_back(Lexeme(Tang, "tg"));
+				i += 2; 
+			}
+			else if (expression.substr(i, 2) == "ln") 
+			{
+				check_UnaryOperation_Const(Lexemes, expression, i); 
+				Lexemes.push_back(Lexeme(Ln, "ln"));
+				i += 2;
+			}
+			else if (expression.substr(i, 2) == "pi")
+			{
+				check_UnaryOperation_Const(Lexemes, expression, i);
+				Lexemes.push_back(Lexeme(Number, std::to_string(PI)));
+				i += 2;
+			}
+			else if (expression[i] == 'e')
+			{
+				check_UnaryOperation_Const(Lexemes, expression, i);
+				Lexemes.push_back(Lexeme(Number, std::to_string(ex)));
+				++i;
+			}
 			else if (expression[i] == ' ') ++i;
-			else if (expression[i] == '.') throw UnexpectedSymbolError("Разделитель вне числа.", i);
-			else throw UnexpectedSymbolError("Недопустимый символ.", i);
+			else throw UnexpectedSymbolError("Недопустимый символ. Слово № ", Lexemes.size() - multiply_count + 1);
 		}
 
-		else if (expression[i] == 'e') { Lexemes.push_back(Lexeme(Number, std::to_string(ex))); ++i; }
+		else if (expression[i] == 'e')
+		{
+			check_UnaryOperation_Const(Lexemes, expression, i);
+			Lexemes.push_back(Lexeme(Number, std::to_string(ex)));
+			++i;
+		}
 		else if (expression[i] == ' ') ++i;
-		else if (expression[i] == '.') throw UnexpectedSymbolError("Разделитель вне числа.", i);
-		else throw UnexpectedSymbolError("Недопустимый символ.", i);
+		else throw UnexpectedSymbolError("Недопустимый символ. Слово № ", Lexemes.size() - multiply_count + 1);
 	}
 
+	if (Lexemes.size() > 0)
+	{
+		switch (Lexemes.back().type)
+		{
+		case Plus:
+		case Minus:
+		case UnaryMinus:
+		case Multiply:
+		case Division:
+		case Power:
+		case Sinus:
+		case Cosin:
+		case Tang:
+		case Ctan:
+		case Sqrt:
+		case Ln:
+		case Abs:
+			throw UnexpectedSymbolError("Ожидался аргумент функции после слова № ", Lexemes.size() - multiply_count);
+		case LeftBracket:
+			throw UnexpectedSymbolError("Ожидалась закрывающая скобка после слова № ", Lexemes.size() - multiply_count);
+		}
+	}
 	if (BracketCount < 0) throw UnexpectedSymbolError("Ожидалась открывающая скобка.");
 	else if (BracketCount > 0) throw UnexpectedSymbolError("Ожидалась закрывающая скобка.");
-	else
-	{
-		if (Lexemes.size() > 0)
-		{
-			if (Lexemes[0].type == Plus || Lexemes[0].type == Multiply || Lexemes[0].type == Division || Lexemes[0].type == RightBracket || Lexemes[Lexemes.size() - 1].type == Plus || Lexemes[Lexemes.size() - 1].type == Minus || Lexemes[Lexemes.size() - 1].type == Multiply || Lexemes[Lexemes.size() - 1].type == Division || Lexemes[Lexemes.size() - 1].type == Abs || Lexemes[Lexemes.size() - 1].type == Power || Lexemes[Lexemes.size() - 1].type == Sinus || Lexemes[Lexemes.size() - 1].type == Cosin || Lexemes[Lexemes.size() - 1].type == Tang || Lexemes[Lexemes.size() - 1].type == Ctan || Lexemes[Lexemes.size() - 1].type == Ln || Lexemes[Lexemes.size() - 1].type == LeftBracket)
-				throw UnexpectedSymbolError("Недопустимое использование операции или скобки.", -1);
-			for (int i = 1; i < Lexemes.size(); i++)
-			{
-				switch (Lexemes[i].type)
-				{
-				case Plus:
-				case Multiply:
-				case Division:
-				case Power:
-				{
-					if (Lexemes[i - 1].type == LeftBracket || Lexemes[i - 1].type == Plus || Lexemes[i - 1].type == Minus || Lexemes[i - 1].type == Multiply || Lexemes[i - 1].type == Division || Lexemes[i - 1].type == Power)
-						throw UnexpectedSymbolError("Недопустимое использование операции или скобки.");
-					break;
-				}
-				case Minus:
-				{
-					if (Lexemes[i - 1].type == Plus || Lexemes[i - 1].type == Minus || Lexemes[i - 1].type == Multiply || Lexemes[i - 1].type == Division || Lexemes[i - 1].type == Power)
-						throw UnexpectedSymbolError("Недопустимое использование операции.");
-					break;
-				}
-				case LeftBracket:
-				{
-					if (Lexemes[i - 1].type == Number || Lexemes[i - 1].type == RightBracket)
-					{
-						std::vector<Lexeme>::iterator it = Lexemes.begin() + i;
-						Lexemes.insert(it, Lexeme(Multiply, "*"));
-					}
-					break;
-				}
-				case Number:
-				{
-					if (Lexemes[i].value == std::to_string(PI) || Lexemes[i].value == std::to_string(ex))
-					{
-						if (Lexemes[i - 1].type == Number)
-						{
-							std::vector<Lexeme>::iterator it = Lexemes.begin() + i;
-							Lexemes.insert(it, Lexeme(Multiply, "*"));
-						}
-					}
-					else if (Lexemes[i - 1].value == std::to_string(PI) || Lexemes[i - 1].value == std::to_string(ex) || Lexemes[i - 1].type == RightBracket)
-						throw UnexpectedSymbolError("Ожидалась операция.");
-					break;
-				}
-				case Abs:
-				case Sinus:
-				case Cosin:
-				case Tang:
-				case Ctan:
-				case Sqrt:
-				case Ln:
-				{
-					if (Lexemes[i - 1].type == Number || Lexemes[i - 1].type == RightBracket)
-					{
-						std::vector<Lexeme>::iterator it = Lexemes.begin() + i;
-						Lexemes.insert(it, Lexeme(Multiply, "*"));
-					}
-					break;
-				}
-				case RightBracket:
-				{
-					if (Lexemes[i - 1].type == LeftBracket || Lexemes[i - 1].type == Plus || Lexemes[i - 1].type == Minus || Lexemes[i - 1].type == Multiply || Lexemes[i - 1].type == Division || Lexemes[i - 1].type == Power)
-						throw UnexpectedSymbolError("Недопустимое использование операции.");
-					break;
-				}
-				}
-			}
-		}
-	}
+
 	return Lexemes;
 }
 
@@ -256,19 +487,20 @@ void absolute(std::stack<double>& numbers, std::stack<Lexeme>& operations)
 	operations.pop();
 }
 
-void nlog(std::stack<double>& numbers, std::stack<Lexeme>& operations)
+void nlog(std::stack<double>& numbers, std::stack<Lexeme>& operations, const int& index)
 {
 	double operand = numbers.top();
 	numbers.pop();
-	if (operand <= 0) throw UnexpectedSymbolError("Неположительное выражение под логарифмом.");
+	if (operand <= 0) throw UnexpectedSymbolError("Неположительное выражение под логарифмом. Слово № ", index + 1);
 	numbers.push(log(operand));
 	operations.pop();
 }
 
-void square_root(std::stack<double>& numbers, std::stack<Lexeme>& operations)
+void square_root(std::stack<double>& numbers, std::stack<Lexeme>& operations, const int& index)
 {
 	double operand = numbers.top();
 	numbers.pop();
+	if (operand < 0) throw UnexpectedSymbolError("Отрицательное значение под корнем. Слово № ", index + 1);
 	numbers.push(sqrt(operand));
 	operations.pop();
 }
@@ -297,25 +529,25 @@ void cosinus(std::stack<double>& numbers, std::stack<Lexeme>& operations)
 	operations.pop();
 }
 
-void tangens(std::stack<double>& numbers, std::stack<Lexeme>& operations)
+void tangens(std::stack<double>& numbers, std::stack<Lexeme>& operations, const int& index)
 {
 	double operand = numbers.top();
 	numbers.pop();
 	if (operand == 3 * PI / 2)
-		throw UnexpectedSymbolError("Тангенс не существует.");
+		throw UnexpectedSymbolError("Тангенс не существует. Слово № ", index + 1);
 	else if (round((operand - PI / 2) / PI) == (operand - PI / 2) / PI)
-		throw UnexpectedSymbolError("Тангенс не существует.");
+		throw UnexpectedSymbolError("Тангенс не существует. Слово № ", index + 1);
 	else
 		numbers.push(tan(operand));
 	operations.pop();
 }
 
-void cotangens(std::stack<double>& numbers, std::stack<Lexeme>& operations)
+void cotangens(std::stack<double>& numbers, std::stack<Lexeme>& operations, const int& index)
 {
 	double operand = numbers.top();
 	numbers.pop();
 	if (round(operand / PI) == operand / PI)
-		throw UnexpectedSymbolError("Котангенс не существует.");
+		throw UnexpectedSymbolError("Котангенс не существует. Слово № ", index + 1);
 	else
 		numbers.push(cos(operand) / sin(operand));
 	operations.pop();
@@ -341,11 +573,11 @@ void multiply(std::stack<double>& numbers, std::stack<Lexeme>& operations)
 	operations.pop();
 }
 
-void division(std::stack<double>& numbers, std::stack<Lexeme>& operations)
+void division(std::stack<double>& numbers, std::stack<Lexeme>& operations, const int& index)
 {
 	double operandR = numbers.top();
 	numbers.pop();
-	if (operandR == 0) throw UnexpectedSymbolError("Невозможно поделить на 0.");
+	if (operandR == 0) throw UnexpectedSymbolError("Невозможно поделить на 0. Слово № ", index + 1);
 	double operandL = numbers.top();
 	numbers.pop();
 	numbers.push(operandL / operandR);
@@ -382,7 +614,7 @@ void unary_minuss(std::stack<double>& numbers, std::stack<Lexeme>& operations)
 
 /// <summary>
 /// priorty:
-/// sqrt, sin, cos, tg, ctg, ln, odinary -
+/// sqrt, sin, cos, tg, ctg, ln, unary minus
 /// power
 /// *, /
 /// +, -
@@ -390,7 +622,7 @@ void unary_minuss(std::stack<double>& numbers, std::stack<Lexeme>& operations)
 /// <param name="expression"></param>
 /// <returns></returns>
 
-double count(const std::string& expression)
+double count(std::string& expression)
 //алгоритм вычислений через два стека - с числами и операциями, 
 //которые наполняются и обрабатывваются по мере чтения лексем(токенов)
 {
@@ -416,93 +648,83 @@ double count(const std::string& expression)
 		{
 			if (operations.size() > 0)
 			{
-				if (token[i].type == Minus && (token[i - 1].type == LeftBracket || token[i - 1].type == Abs || token[i - 1].type == Ln || token[i - 1].type == Sinus || token[i - 1].type == Cosin || token[i - 1].type == Tang || token[i - 1].type == Ctan || token[i - 1].type == Sqrt || token[i - 1].type == Power))
+				switch (operations.top().type)
 				{
-					token[i].type = UnaryMinus;
+				case UnaryMinus:
+				{
+					unary_minuss(numbers, operations);
+					break;
+				}
+				case Abs:
+				{
+					absolute(numbers, operations);
+					break;
+				}
+				case Ln:
+				{
+					nlog(numbers, operations, i);
+					break;
+				}
+				case Sqrt:
+				{
+					square_root(numbers, operations, i);
+					break;
+				}
+				case Sinus:
+				{
+					sinus(numbers, operations);
+					break;
+				}
+				case Cosin:
+				{
+					cosinus(numbers, operations);
+					break;
+				}
+				case Tang:
+				{
+					tangens(numbers, operations, i);
+					break;
+				}
+				case Ctan:
+				{
+					cotangens(numbers, operations, i);
+					break;
+				}
+				case Power:
+				{
+					power(numbers, operations);
+					break;
+				}
+				case Multiply:
+				{
+					multiply(numbers, operations);
+					break;
+				}
+				case Division:
+				{
+					division(numbers, operations, i);
+					break;
+				}
+				case Plus:
+				{
+					pluss(numbers, operations);
+					break;
+				}
+				case Minus:
+				{
+					binary_minuss(numbers, operations);
+					break;
+				}
+				case LeftBracket:
+				{
 					operations.push(token[i]);
 					++i;
+					break;
 				}
-				else
-				{
-					switch (operations.top().type)
-					{
-					case UnaryMinus:
-					{
-						unary_minuss(numbers, operations);
-						break;
-					}
-					case Abs:
-					{
-						absolute(numbers, operations);
-						break;
-					}
-					case Ln:
-					{
-						nlog(numbers, operations);
-						break;
-					}
-					case Sqrt:
-					{
-						square_root(numbers, operations);
-						break;
-					}
-					case Sinus:
-					{
-						sinus(numbers, operations);
-						break;
-					}
-					case Cosin:
-					{
-						cosinus(numbers, operations);
-						break;
-					}
-					case Tang:
-					{
-						tangens(numbers, operations);
-						break;
-					}
-					case Ctan:
-					{
-						cotangens(numbers, operations);
-						break;
-					}
-					case Power:
-					{
-						power(numbers, operations);
-						break;
-					}
-					case Multiply:
-					{
-						multiply(numbers, operations);
-						break;
-					}
-					case Division:
-					{
-						division(numbers, operations);
-						break;
-					}
-					case Plus:
-					{
-						pluss(numbers, operations);
-						break;
-					}
-					case Minus:
-					{
-						binary_minuss(numbers, operations);
-						break;
-					}
-					case LeftBracket:
-					{
-						operations.push(token[i]);
-						++i;
-						break;
-					}
-					}
 				}
 			}
 			else
 			{
-				if (token[i].type == Minus && numbers.size() == 0) token[i].type = UnaryMinus;
 				operations.push(token[i]);
 				++i;
 			}
@@ -521,37 +743,149 @@ double count(const std::string& expression)
 				}
 				case Abs:
 				{
-					absolute(numbers, operations);
+					if (token[i].value == "")
+					{
+						if (i + 1 < token.size())
+						{
+							if (token[i + 1].value == std::to_string(PI) || token[i + 1].value == std::to_string(ex))
+							{
+								operations.push(Lexeme(Multiply, ""));
+								numbers.push(std::stod(token[i + 1].value));
+								multiply(numbers, operations);
+								i += 2;
+							}
+							else absolute(numbers, operations);
+						}
+						else absolute(numbers, operations);
+					}
+					else absolute(numbers, operations);
+					
 					break;
 				}
 				case Ln:
 				{
-					nlog(numbers, operations);
+					if (token[i].value == "")
+					{
+						if (i + 1 < token.size())
+						{
+							if (token[i + 1].value == std::to_string(PI) || token[i + 1].value == std::to_string(ex))
+							{
+								operations.push(Lexeme(Multiply, ""));
+								numbers.push(std::stod(token[i + 1].value));
+								multiply(numbers, operations);
+								i += 2;
+							}
+							else nlog(numbers, operations, i);
+						}
+						else nlog(numbers, operations, i);
+					}
+					else nlog(numbers, operations, i);
+					
 					break;
 				}
 				case Sqrt:
 				{
-					square_root(numbers, operations);
+					if (token[i].value == "")
+					{
+						if (i + 1 < token.size())
+						{
+							if (token[i + 1].value == std::to_string(PI) || token[i + 1].value == std::to_string(ex))
+							{
+								operations.push(Lexeme(Multiply, ""));
+								numbers.push(std::stod(token[i + 1].value));
+								multiply(numbers, operations);
+								i += 2;
+							}
+							else square_root(numbers, operations, i);
+						}
+						else square_root(numbers, operations, i);
+					}
+					else square_root(numbers, operations, i);
+					
 					break;
 				}
 				case Sinus:
 				{
-					sinus(numbers, operations);
+					if (token[i].value == "")
+					{
+						if (i + 1 < token.size())
+						{
+							if (token[i + 1].value == std::to_string(PI) || token[i + 1].value == std::to_string(ex))
+							{
+								operations.push(Lexeme(Multiply, ""));
+								numbers.push(std::stod(token[i + 1].value));
+								multiply(numbers, operations);
+								i += 2;
+							}
+							else sinus(numbers, operations);
+						}
+						else sinus(numbers, operations);
+					}
+					else sinus(numbers, operations);
+					
 					break;
 				}
 				case Cosin:
 				{
-					cosinus(numbers, operations);
+					if (token[i].value == "")
+					{
+						if (i + 1 < token.size())
+						{
+							if (token[i + 1].value == std::to_string(PI) || token[i + 1].value == std::to_string(ex))
+							{
+								operations.push(Lexeme(Multiply, ""));
+								numbers.push(std::stod(token[i + 1].value));
+								multiply(numbers, operations);
+								i += 2;
+							}
+							else cosinus(numbers, operations);
+						}
+						else cosinus(numbers, operations);
+					}
+					else cosinus(numbers, operations);
+					
 					break;
 				}
 				case Tang:
 				{
-					tangens(numbers, operations);
+					if (token[i].value == "")
+					{
+						if (i + 1 < token.size())
+						{
+							if (token[i + 1].value == std::to_string(PI) || token[i + 1].value == std::to_string(ex))
+							{
+								operations.push(Lexeme(Multiply, ""));
+								numbers.push(std::stod(token[i + 1].value));
+								multiply(numbers, operations);
+								i += 2;
+							}
+							else tangens(numbers, operations, i);
+						}
+						else tangens(numbers, operations, i);
+					}
+					else tangens(numbers, operations, i);
+					
 					break;
 				}
 				case Ctan:
 				{
-					cotangens(numbers, operations);
+					if (token[i].value == "")
+					{
+						if (i + 1 < token.size())
+						{
+							if (token[i + 1].value == std::to_string(PI) || token[i + 1].value == std::to_string(ex))
+							{
+								operations.push(Lexeme(Multiply, ""));
+								numbers.push(std::stod(token[i + 1].value));
+								multiply(numbers, operations);
+								i += 2;
+							}
+							else cotangens(numbers, operations, i);
+						}
+						else cotangens(numbers, operations, i);
+					}
+					else cotangens(numbers, operations, i);
+					
 					break;
 				}
 				case Power:
@@ -566,7 +900,7 @@ double count(const std::string& expression)
 				}
 				case Division:
 				{
-					division(numbers, operations);
+					division(numbers, operations, i);
 					break;
 				}
 				case Plus:
@@ -604,12 +938,12 @@ double count(const std::string& expression)
 				}
 				case Ln:
 				{
-					nlog(numbers, operations);
+					nlog(numbers, operations, i);
 					break;
 				}
 				case Sqrt:
 				{
-					square_root(numbers, operations);
+					square_root(numbers, operations, i);
 					break;
 				}
 				case Sinus:
@@ -624,12 +958,12 @@ double count(const std::string& expression)
 				}
 				case Tang:
 				{
-					tangens(numbers, operations);
+					tangens(numbers, operations, i);
 					break;
 				}
 				case Ctan:
 				{
-					cotangens(numbers, operations);
+					cotangens(numbers, operations, i);
 					break;
 				}
 				case Power:
@@ -708,12 +1042,12 @@ double count(const std::string& expression)
 				}
                 case Ln:
 				{
-					nlog(numbers, operations);
+					nlog(numbers, operations, i);
 					break;
 				}
 				case Sqrt:
 				{
-					square_root(numbers, operations);
+					square_root(numbers, operations, i);
 					break;
 				}
 				case Sinus:
@@ -728,12 +1062,12 @@ double count(const std::string& expression)
 				}
 				case Tang:
 				{
-					tangens(numbers, operations);
+					tangens(numbers, operations, i);
 					break;
 				}
 				case Ctan:
 				{
-					cotangens(numbers, operations);
+					cotangens(numbers, operations, i);
 					break;
 				}
 				case Power:
@@ -748,7 +1082,7 @@ double count(const std::string& expression)
 				}
 				case Division:
 				{
-					division(numbers, operations);
+					division(numbers, operations, i);
 					break;
 				}
 				case Plus:
@@ -784,12 +1118,12 @@ double count(const std::string& expression)
 		}
 		case Ln:
 		{
-			nlog(numbers, operations);
+			nlog(numbers, operations, i);
 			break;
 		}
 		case Sqrt:
 		{
-			square_root(numbers, operations);
+			square_root(numbers, operations, i);
 			break;
 		}
 		case Sinus:
@@ -804,12 +1138,12 @@ double count(const std::string& expression)
 		}
 		case Tang:
 		{
-			tangens(numbers, operations);
+			tangens(numbers, operations, i);
 			break;
 		}
 		case Ctan:
 		{
-			cotangens(numbers, operations);
+			cotangens(numbers, operations, i);
 			break;
 		}
 		case Power:
@@ -824,7 +1158,7 @@ double count(const std::string& expression)
 		}
 		case Division:
 		{
-			division(numbers, operations);
+			division(numbers, operations, i);
 			break;
 		}
 		case Plus:
@@ -844,5 +1178,5 @@ double count(const std::string& expression)
 	{
 		return numbers.top();
 	}
-	else throw UnexpectedSymbolError("Нет чисел для обработки.");
+	else throw UnexpectedSymbolError("Нет данных для обработки.");
 }
