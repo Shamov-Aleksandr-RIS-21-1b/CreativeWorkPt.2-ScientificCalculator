@@ -890,7 +890,7 @@ namespace Calculator {
 	}
 	private: System::Void buttonBackspace_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		if (Expression->Text->Length >= 3)
+		/*if (Expression->Text->Length >= 3)
 		{
 			if (Expression->Text->Substring(Expression->Text->Length - 3) == "sin" || Expression->Text->Substring(Expression->Text->Length - 3) == "cos" || Expression->Text->Substring(Expression->Text->Length - 3) == "ctg" || Expression->Text->Substring(Expression->Text->Length - 3) == "abs")
 				Expression->Text = Expression->Text->Substring(0, Expression->Text->Length - 3);
@@ -907,7 +907,35 @@ namespace Calculator {
 				Expression->Text = Expression->Text->Substring(0, Expression->Text->Length - 1);
 		}
 		else if (Expression->Text->Length > 0)
-			Expression->Text = Expression->Text->Substring(0, Expression->Text->Length - 1);
+			Expression->Text = Expression->Text->Substring(0, Expression->Text->Length - 1);*/
+		
+		//SendKeys::Send("{BACKSPACE}");
+
+		//Expression->SelectionStart;
+
+		if (Expression->SelectedText->Length == 0)
+		{
+			if (Expression->SelectionStart - 1 >= 3)
+			{
+				if (Expression->Text->Substring(Expression->SelectionStart - 4, 3) == "sin" || Expression->Text->Substring(Expression->SelectionStart - 4, 3) == "cos" || Expression->Text->Substring(Expression->SelectionStart - 4, 3) == "ctg" || Expression->Text->Substring(Expression->SelectionStart - 4, 3) == "abs")
+					Expression->Text = Expression->Text->Substring(0, Expression->SelectionStart - 4) + Expression->Text->Substring(Expression->SelectionStart);
+				else if (Expression->Text->Substring(Expression->SelectionStart - 3) == "tg" || Expression->Text->Substring(Expression->SelectionStart - 3) == "ln" || Expression->Text->Substring(Expression->SelectionStart - 3) == "pi")
+					Expression->Text = Expression->Text->Remove(Expression->SelectionStart - 2, 2);
+				else
+					Expression->Text = Expression->Text->Remove(Expression->SelectionStart - 1, 1);
+					//Expression->Text = Expression->Text->Substring(0, Expression->Text->Length - 1);
+			}
+			else if (Expression->Text->Length >= 2)
+			{
+				if (Expression->Text->Substring(Expression->Text->Length - 2) == "tg" || Expression->Text->Substring(Expression->Text->Length - 2) == "ln" || Expression->Text->Substring(Expression->Text->Length - 2) == "pi")
+					Expression->Text = Expression->Text->Remove(Expression->SelectionStart - 2, 2);
+				else
+					//Expression->Text = Expression->Text->Remove(Expression->SelectionStart - 1, 1);
+					Expression->Text = Expression->Text->Substring(0, Expression->Text->Length - 1);
+			}
+			else if (Expression->Text->Length > 0)
+				Expression->Text = Expression->Text->Substring(0, Expression->Text->Length - 1);
+		}
 
 		Answer->Text = L"";
 
@@ -977,6 +1005,9 @@ namespace Calculator {
 		case Keys::Escape:
 		case Keys::C:
 			buttonClear->PerformClick();
+			break;
+		case Keys::Back:
+			buttonBackspace->PerformClick();
 			break;
 		}
 
