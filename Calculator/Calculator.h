@@ -929,6 +929,30 @@ namespace Calculator {
 	}
 	private: System::Void buttonBackspace_Click(System::Object^ sender, System::EventArgs^ e)
 	{
+		/*if (Expression->Text->Length >= 3)
+		{
+			if (Expression->Text->Substring(Expression->Text->Length - 3) == "sin" || Expression->Text->Substring(Expression->Text->Length - 3) == "cos" || Expression->Text->Substring(Expression->Text->Length - 3) == "ctg" || Expression->Text->Substring(Expression->Text->Length - 3) == "abs")
+				Expression->Text = Expression->Text->Substring(0, Expression->Text->Length - 3);
+			else if (Expression->Text->Substring(Expression->Text->Length - 2) == "tg" || Expression->Text->Substring(Expression->Text->Length - 2) == "ln" || Expression->Text->Substring(Expression->Text->Length - 2) == "pi")
+				Expression->Text = Expression->Text->Substring(0, Expression->Text->Length - 2);
+			else
+				Expression->Text = Expression->Text->Substring(0, Expression->Text->Length - 1);
+		}
+		else if (Expression->Text->Length >= 2)
+		{
+			if (Expression->Text->Substring(Expression->Text->Length - 2) == "tg" || Expression->Text->Substring(Expression->Text->Length - 2) == "ln" || Expression->Text->Substring(Expression->Text->Length - 2) == "pi")
+				Expression->Text = Expression->Text->Substring(0, Expression->Text->Length - 2);
+			else
+				Expression->Text = Expression->Text->Substring(0, Expression->Text->Length - 1);
+		}
+		else if (Expression->Text->Length > 0)
+			Expression->Text = Expression->Text->Substring(0, Expression->Text->Length - 1);
+
+		Answer->Text = L"";
+
+		this->ActiveControl = Expression;
+		Expression->SelectionStart = Expression->TextLength;*/
+
 		int SelectionEnd = Expression->SelectionStart + Expression->SelectionLength;
 		int SelectionStart = Expression->SelectionStart;
 
